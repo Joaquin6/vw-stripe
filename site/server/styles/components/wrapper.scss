@@ -1,0 +1,42 @@
+@font-face {
+	font-family: "Roboto";
+	src: 	url( "../fonts/roboto-regular.eot" ),
+				url( "../fonts/roboto-regular.eot?#iefix" ) format( "embedded-opentype" ),
+				url( "../fonts/roboto-regular.woff2" ) format( "woff2" ),
+				url( "../fonts/roboto-regular.woff" ) format( "woff" ),
+				url( "../fonts/roboto-regular.ttf" ) format( "truetype" );
+}
+@font-face {
+	font-family: "Rubik";
+	src: 	url( "../fonts/rubik-regular.eot" ),
+				url( "../fonts/rubik-regular.eot?#iefix" ) format( "embedded-opentype" ),
+				url( "../fonts/rubik-regular.woff2" ) format( "woff2" ),
+				url( "../fonts/rubik-regular.woff" ) format( "woff" ),
+				url( "../fonts/rubik-regular.ttf" ) format( "truetype" );
+}
+@font-face {
+	font-family: "Rubik Medium";
+	src: 	url( "../fonts/rubik-medium.eot" ),
+				url( "../fonts/rubik-medium.eot?#iefix" ) format( "embedded-opentype" ),
+				url( "../fonts/rubik-medium.woff2" ) format( "woff2" ),
+				url( "../fonts/rubik-medium.woff" ) format( "woff" ),
+				url( "../fonts/rubik-medium.ttf" ) format( "truetype" );
+}
+html, body {
+	width: 100%;
+
+	&.no-scroll {
+		overflow: hidden;
+	}
+}
+#wrapper {
+	@include f-body-1();
+	background-color: $darkgrey;
+	overflow: hidden;
+	padding: 7rem 0 0 0;
+	width: 100%;
+}
+#main {
+	background-color: $white;
+	width: 100%;
+}

@@ -1,0 +1,25 @@
+extends ./templates/layout
+
+block main
+	div#accessories( class=slug )
+		div.hero
+			div.copy
+				h1.headline #{ title }
+				p.subheading #{ caption }
+		div.filter-cta
+			h2.title Not Sure Where To Start?
+			p.copy Let us help. Try our product filter tool to help narrow down the search.
+		div.filter( data=filters )
+		div.sections
+			each productsList, brand in products
+				div.products
+					h2.subheading All #{ brand }
+					div.list.grid
+						each product in productsList
+							- var src = (product.image.list[0] && product.image.list[0].trim() !== "") ? product.image.list[0] : "https://placehold.it/640x640"
+							div.grid-item
+								a.grid-item-link( href=`/products/${ product.brand_slug }/${ product.slug }` )
+									div.thumbnail-container
+										img.thumbnail( src=src )
+									h3.copy #{ product.name }
+		p( style="display: none;" ) #{ JSON.stringify( products ) }

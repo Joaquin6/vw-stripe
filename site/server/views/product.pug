@@ -1,0 +1,38 @@
+extends ./templates/layout
+
+block main
+	div#product( class=product.type )
+		- var src = product.logo || "https://placehold.it/320x80"
+		img.logo( src=src )
+		- var headerClassName = product.image.list.length > 1 ? "slick-dotted" : ""
+		div.header( class=headerClassName )
+			h1.headline #{ product.name }
+			if fitments
+				p.subheading #{ `${ fitments.join( ", " ) } Lug Fitments` }
+			div.slider
+				if product.image.list.length
+					each image in product.image.list
+						case product.type
+							when "accessory"
+							when "tire"
+								- src = image || "https://placehold.it/320x320"
+							when "wheel"
+								- src = image.src || "https://placehold.it/320x320"
+						div.slide
+							div.thumbnail-container( style="background-image: url( " + src + " );" )
+								img.thumbnail( src=src )
+				else
+					- src = "https://placehold.it/320x320"
+					div.slide
+						div.thumbnail-container( style="background-image: url( " + src + " );" )
+							img.thumbnail( src=src )
+				span.slider-prev Prev
+				span.slider-next Next
+			p.copy #{ product.description }
+		div.cta
+			span.underline
+			h2.subheading Interested In This Product?
+			p.copy Complete the steps below and then add to your cart.
+			span.underline
+		div#item-selector
+			div#props( part_number=part_number product=product warehouses=warehouses )

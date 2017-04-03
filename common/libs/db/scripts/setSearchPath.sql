@@ -1,0 +1,1 @@
+SET search_path=postgres_admin,public,membership,sales;

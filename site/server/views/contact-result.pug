@@ -1,0 +1,21 @@
+extends ./templates/layout
+
+block styles
+	link( href="/css/account.css" rel="stylesheet" type="text/css" )
+block scripts
+	script(src='/js/account.js')
+block main
+	#contentContainer
+		.header
+			h1.title Contact us
+
+		.contactResult
+			if success
+				h1 Thank You
+				p for contacting Vision Wheel. We have received your inquiry and will contact you soon at the email address you provided.
+			if err
+				h1 Oops
+				p sorry there was an error sending your message. Please try again later
+				pre=err
+		form(action="/contact" method="get")
+			input(type='submit' value="Create A New Message") 

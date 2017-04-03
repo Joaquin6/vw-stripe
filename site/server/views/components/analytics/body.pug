@@ -1,0 +1,20 @@
+if currentEnv === "development" || currentEnv === "qa"
+	//- Google Tag Manager (noscript)
+	noscript
+		iframe(
+			src="https://www.googletagmanager.com/ns.html?id=GTM-KT4BM3N"
+			height="0"
+			width="0"
+			style="display: none; visibility: hidden"
+		)
+	//- End Google Tag Manager (noscript)
+else if currentEnv === "production"
+	//- Google Tag Manager (noscript)
+	noscript
+		iframe(
+			src="https://www.googletagmanager.com/ns.html?id=GTM-WWJD26H"
+			height="0"
+			width="0"
+			style="display: none; visibility: hidden"
+		)
+	//- End Google Tag Manager (noscript)

@@ -1,0 +1,98 @@
+@import "./partials/variables";
+@import "./partials/typography";
+@import "./partials/mixins";
+@import "./components/reset";
+@import "./components/wrapper";
+@import "./components/footer";
+@import "./components/overlay";
+#wrapper {
+	padding: 5rem 0 0 0;
+}
+header {
+	background-color: $white;
+	border-bottom: 2px solid $lightgrey;
+	height: 5rem;
+	padding: 0.5rem 0;
+	position: fixed;
+	top: 0; left: 0;
+	width: 100%;
+	z-index: 1;
+
+	.logo {
+		background-image: url( "../images/generic/VWheelLogo-Gray-01.svg" );
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: contain;
+		display: block;
+		height: 4rem;
+		width: 100%;
+	}
+}
+#login {
+	padding: 3rem 1rem;
+	width: 100%;
+}
+.headline {
+	@include f-headline();
+	padding: 1rem 0;
+	text-align: center;
+	text-transform: uppercase;
+	width: 100%;
+}
+h2 {
+	text-align: center;
+	margin: 0 0 1rem;
+}
+.error {
+	color:$red;
+}
+form {
+	margin: 0 auto;
+	max-width: $mobile;
+	width: 100%;
+	
+	.fields {
+		width: 100%;
+
+		.field {
+			@include f-input();
+			margin: 0.5rem 0 0 0;
+			width: 100%;
+
+			&:first-child {
+				margin: 0 0 0 0;
+			}
+		}
+	}
+	.links {
+		margin: 0.5rem 0 0 0;
+		overflow: hidden;
+		width: 100%;
+
+		.link {
+			@include f-caption();
+			color: $red;
+			text-decoration: underline;
+
+			&.forgot-password {
+				float: left;
+			}
+			&.signup {
+				float: right;
+			}
+		}
+	}
+	.submit {
+		@include f-button();
+		margin: 2rem 0 0 0;
+	}
+	&.has-error {
+
+		.fields {
+
+			.field {
+				border: 2px solid $red;
+			}
+		}
+	}
+}

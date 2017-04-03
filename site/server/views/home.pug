@@ -1,0 +1,36 @@
+extends ./templates/layout
+
+block main
+	div#home
+		div.hero
+			div.copy
+				h1.headline Welcome #{ user.first_name }
+				p.subheading to the Vision Wheel Dealer's website
+		div.filter-cta
+			h2.title Get Started Here
+			p.copy Select what type of product you are looking for and use our new product filter tool to narrow your search.
+		div.filter( data=filters )
+		div.features
+			h2.title Browse The Dealer Features
+			div.list
+				div.feature.products
+					div.cta
+						h3.subheading 
+							span.copy Shop And
+							span.copy Add To Cart
+						p.caption We value your time and want to give you the easiest and quickest shipping experience possible.
+						a.button( href="/products" ) View Products
+				div.feature.account
+					div.cta
+						h3.subheading 
+							span.copy Manage / Edit
+							span.copy Your Account
+						p.caption Build and manage your account to keep your status and preferences up-to-date.
+						a.button( href="/account" ) View Account
+				div.feature.downloads
+					div.cta
+						h3.subheading 
+							span.copy Browse
+							span.copy Past Orders
+						p.caption Stay on top of your order history with this easy to follow interface with detail information about recent and past orders.
+						a.button( href="/account/orders" ) View Orders

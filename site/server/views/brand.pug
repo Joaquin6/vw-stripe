@@ -1,0 +1,55 @@
+extends ./templates/layout
+
+block main
+	div#brand
+		div.hero( style="background-image: url( " + brand.image.hero + " );" )
+		div.header
+			img.logo( src=brand.logo )
+			if brand.description
+				p.subheading #{ brand.description }
+		div.sections
+			div.products
+				h1.subheading Most Popular Products
+				div.list.horizontal-scroll
+					each product in popular
+						div.horizontal-scroll-item
+							- var src = ""
+							case product.type
+								when "tire"
+									- src = (product.image.list[0] && product.image.list[0].trim() !== "") ? product.image.list[0] : "https://placehold.it/640x640"
+								when "wheel"
+									- src = (product.image.list[0] && product.image.list[0].src.trim() !== "") ? product.image.list[0].src : "https://placehold.it/640x640"
+							a.horizontal-scroll-item-link( href=`/products/${ product.brand_slug }/${ product.slug }` )
+								div.thumbnail-container
+									img.thumbnail( src=src )
+								h3.copy #{ product.name }
+			//- div.products
+			//- 	h1.subheading On Clearance
+			//- 	div.list.horizontal-scroll
+			//- 		each product in products
+			//- 			div.horizontal-scroll-item
+			//- 				- var src = ""
+			//- 				case product.type
+			//- 					when "tire"
+			//- 						- src = (product.image.list[0] && product.image.list[0].trim() !== "") ? product.image.list[0] : "https://placehold.it/640x640"
+			//- 					when "wheel"
+			//- 						- src = (product.image.list[0] && product.image.list[0].src.trim() !== "") ? product.image.list[0].src : "https://placehold.it/640x640"
+			//- 				a.horizontal-scroll-item-link( href=`/products/${ product.brand_slug }/${ product.slug }` )
+			//- 					div.thumbnail-container
+			//- 						img.thumbnail( src=src )
+			//- 					h3.copy #{ product.name }
+			div.products
+				h1.subheading All #{ brand.name }
+				div.list.grid
+					each product in products
+						div.grid-item
+							- var src = ""
+							case product.type
+								when "tire"
+									- src = (product.image.list[0] && product.image.list[0].trim() !== "") ? product.image.list[0] : "https://placehold.it/640x640"
+								when "wheel"
+									- src = (product.image.list[0] && product.image.list[0].src.trim() !== "") ? product.image.list[0].src : "https://placehold.it/640x640"
+							a.grid-item-link( href=`/products/${ product.brand_slug }/${ product.slug }` )
+								div.thumbnail-container
+									img.thumbnail( src=src )
+								h3.copy #{ product.name }

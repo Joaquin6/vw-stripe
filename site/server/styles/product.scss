@@ -1,0 +1,219 @@
+@import "./partials/variables";
+@import "./partials/typography";
+@import "./partials/mixins";
+@import "./components/reset";
+@import "./components/wrapper";
+@import "./components/header";
+@import "./components/nav";
+@import "./components/footer";
+@import "./components/slider";
+@import "./components/itemSelector";
+@import "./components/overlay";
+#product {
+	margin: 0 auto;
+	max-width: $mw-large;
+	padding: 3rem 0;
+	width: 100%;
+
+	.header {
+		width: 100%;
+
+		.headline {
+			@include f-headline();
+			color: $black;
+			padding: 0 1rem;
+			text-align: center;
+			text-transform: uppercase;
+			width: 100%;
+		}
+		.copy {
+			@include f-body-1();
+			color: $grey;
+			display: block;
+			margin: 1rem 0 0 0;
+			padding: 0 1rem;
+			text-align: center;
+			width: 100%;
+		}
+		.slider {
+			margin: 1rem auto;
+			max-width: $mobile;
+			overflow: hidden;
+			width: 100%;
+
+			.slick-list {
+
+				.slick-track {
+
+					.slide {
+						padding: 0 2rem;
+
+						.thumbnail-container {
+							width: 100%;
+
+							.thumbnail {
+								width: 100%;
+							}
+						}
+					}
+				}
+			}
+			.slider-prev {
+				background-color: transparent;
+				background-image: url( "../images/icons/arrow_l.svg" );
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: 50% auto;
+				color: transparent;
+				font-size: 0px;
+				height: auto;
+				line-height: 0px;
+				padding: 0 0 0 0;
+				top: 0; bottom: 2rem; left: 0;
+	      @include transform( translate3d( 0, 0, 0 ) );
+				width: 2rem;
+			}
+			.slider-next {
+				background-color: transparent;
+				background-image: url( "../images/icons/arrow_r.svg" );
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: 50% auto;
+				color: transparent;
+				font-size: 0px;
+				height: auto;
+				line-height: 0px;
+				padding: 0 0 0 0;
+				top: 0; right: 0; bottom: 2rem;
+	      @include transform( translate3d( 0, 0, 0 ) );
+				width: 2rem;
+			}
+		}
+	}
+	&.accessory {
+
+	}
+	&.tire {
+		
+	}
+	&.wheel {
+
+		.header {
+
+			.subheading {
+				@include f-subheading();
+				color: $grey;
+				margin: 0.25rem 0 0 0;
+				padding: 0 1rem;
+				text-align: center;
+				width: 100%;
+			}
+		}
+	}
+	@media( min-width: $tablet ) {
+
+	}
+	@media( min-width: $desktop ) {
+		.header {
+			min-height: 20rem;
+			position: relative;
+
+			.headline {
+				padding: 0 0 0 52.5%;
+				text-align: left;
+			}
+			.copy {
+				padding: 0 0 0 52.5%;
+				text-align: left;
+			}
+			.slider {
+				margin: 0 0 0 0;
+				max-width: none;
+				padding: 40% 0 0 0;
+				position: absolute;
+				top: 0; left: 0;
+				width: 50%;
+
+				.slick-list {
+					position: absolute;
+					top: 0; right: 0; bottom: 0; left: 0;
+
+					.slick-track {
+						height: 100%;
+
+						.slide {
+							height: 100%;
+
+							.thumbnail-container {
+								background-position: center center;
+								background-repeat: no-repeat;
+								background-size: contain;
+								height: 100%;
+
+								.thumbnail {
+									display: none;
+								}
+							}
+						}
+					}
+				}
+				&.slick-dotted {
+					padding: 40% 0 1.5rem 0;
+
+					.slick-list {
+						bottom: 1.5rem;
+					}
+				}
+			}
+			&.slick-dotted {
+				min-height: 21.5rem;
+			}
+		}
+		&.accessory {
+			
+		}
+		&.tire {
+			
+		}
+		&.wheel {
+
+			.header {
+
+				.subheading {
+					padding: 0 0 0 52.5%;
+					text-align: left;
+				}
+			}
+		}
+	}
+}
+.logo {
+	display: block;
+	margin: 0 auto 3rem auto;
+	max-width: $mobile;
+	width: 100%;
+}
+.cta {
+	margin: 3rem 0;
+	padding: 0 1rem;
+	width: 100%;
+
+	.underline {
+		@include underline();
+	}
+	.subheading {
+		color: $red;
+		font-family: $ff-rubik-medium;
+		font-size: $fs-subheading;
+		line-height: $lh-subheading;
+		margin: 1rem 0 0 0;
+		text-transform: uppercase;
+		width: 100%;
+	}
+	.copy {
+		@include f-body-1();
+		color: $grey;
+		margin: 0.25rem 0 1rem 0;
+		width: 100%;
+	}
+}

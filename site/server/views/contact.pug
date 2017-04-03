@@ -1,0 +1,18 @@
+extends ./templates/layout
+
+block styles
+	link( href="/css/account.css" rel="stylesheet" type="text/css" )
+block scripts
+	script(src='/js/account.js')
+block main
+	#contentContainer
+		.header
+			h1 Contact us
+		.commentFormContainer
+			form(action="/contact" method="post")
+				input.name(name='name' type='text' placeholder="Name or Dealer #" required)
+				input.email(name='email' type='email' placeholder="email" required)
+				input.subject(name='subject' type='text' placeholder="Subject" required)
+				p Comments/Questions/Message:
+				textarea(rows=4, cols=50, name='message' required) 
+				input.submit(type='submit')

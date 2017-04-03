@@ -1,0 +1,13 @@
+node_modules/
+.git/
+coverage/
+.dockerignore
+Dockerfile
+Dockerfile.qa
+Dockerfile.prod
+.gitignore
+.env
+.eslintrc
+.editorconfig
+.gitlab-ci.yml
+

@@ -1,0 +1,24 @@
+mixin nav(current)
+	.navContainer
+		ul
+			if current!="manageProfile"
+				li.manageProfile
+					a( href="/account/profile" ) Manage Your Profile / Change Password
+			if current!="orderHistory"
+				li.orderHistory
+					a(href="/account/orders") View Order History
+			if current!="payPurchaseOrder"
+				li.payPurchaseOrder
+					a( href="/account/pay-purchase-order" ) Pay Purchase Order
+			if current!="missingItems"
+				//- li.missingItems
+				//- 	a( href="/account" ) Submit RMA/Missing Items
+			if current!="credit"
+				li.credit
+					a( target="_blank", href="http://images.visionwheel.com/images/categories/highres/VW%20Company%20Credit%20App%20-%20full.pdf" ) View Dealer Credit Application
+			if current!="quickCredit"
+				li.quickCredit
+					a( target="_blank", href="http://images.visionwheel.com/images/categories/highres/VW%20QUICK%20CREDIT%20APP.pdf" ) View Dealer Quick Credit Application
+			if current!="downloads"
+				//- li.downloads
+				//- 	a( href="/account" ) Download Vision Wheel Graphics

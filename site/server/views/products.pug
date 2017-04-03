@@ -1,0 +1,66 @@
+extends ./templates/layout
+
+block main
+	-
+		var slider = [
+			{
+				href: "/products/milanni",
+				src: "/img/products/ShopAll_Wheels_Milanni.jpg"
+			},
+			{
+				href: "/products/american-muscle",
+				src: "/img/products/ShopAll_Wheels_AM.jpg"
+			},
+			{
+				href: "/products/vision-off-road",
+				src: "/img/products/ShopAll_Wheels_OffRoad.jpg"
+			},
+			{
+				href: "/products/atv",
+				src: "/img/products/ShopAll_Tires_ATV.jpg"
+			},
+			{
+				href: "/products/golf",
+				src: "/img/products/ShopAll_Tires_GOLF.jpg"
+			},
+			{
+				href: "/products/l-and-g",
+				src: "/img/products/ShopAll_Tires_LG.jpg"
+			}
+		]
+	div#products
+		div.hero
+			div.copy
+				h1.headline Shop All Vision Wheel Products
+				p.subheading With over 40 years of experience Vision Wheel only delivers the finest products. We strive to bring cutting edge designs that provide our customers with a multitude of styles and finishes which appeal to everyone. Be sure to check out our new lineup now.
+		div.filter-cta
+			h2.title Not Sure Where To Start?
+			p.copy Let us help. Try our product filter tool to help narrow down the search.
+		div.filter( data=filters )
+		div.slideshow
+			h2.subheading Choose from the best wheels and tires
+			include ./components/slider
+		div.sections
+			h2.title Most Popular Products
+			div.products
+				h2.subheading Wheels
+				div.list.horizontal-scroll
+					each product in popular.wheels
+						- var src = (product.image.list[0] && product.image.list[0].src.trim() !== "") ? product.image.list[0].src : "https://placehold.it/128x128"
+						div.horizontal-scroll-item
+							a.horizontal-scroll-item-link( href=`/products/${ product.brand_slug }/${ product.slug }` )
+								div.thumbnail-container
+									img.thumbnail( src=src )
+								h3.copy #{ product.name }
+				a.button( href="/wheels" ) View All
+			div.products
+				h2.subheading Tires
+				div.list.horizontal-scroll
+					each product in popular.tires
+						- var src = (product.image.list[0] && product.image.list[0].trim() !== "") ? product.image.list[0] : "https://placehold.it/128x128"
+						div.horizontal-scroll-item
+							a.horizontal-scroll-item-link( href=`/products/${ product.brand_slug }/${ product.slug }` )
+								div.thumbnail-container
+									img.thumbnail( src=src )
+								h3.copy #{ product.name }
+				a.button( href="/tires" ) View All

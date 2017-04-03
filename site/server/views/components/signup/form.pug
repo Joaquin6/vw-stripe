@@ -1,0 +1,157 @@
+div#signup
+	if err
+		h2.error= err.hint ? err.hint : err.message
+	if message
+		h2.error #{ message }
+	form.signup-form( method="POST" action="/signup" )
+		div.customer-number.fieldset
+			h1.title Sign Up To Become A Dealer
+			div.fields
+				if customer_number
+					input.field( name="customer_number" type="text" value=customer_number )
+				else
+					input.field( name="customer_number" type="text" placeholder="Customer Number" )
+				div.caption
+					p.copy Not sure where to find your customer number?
+					span.cta Find out
+				div.customer.fieldset
+					div.fields
+						if first_name
+							input.field( name="first_name" type="text" value=first_name )
+						else
+							input.field( name="first_name" type="text" placeholder="First Name" )
+						if last_name
+							input.field( name="last_name" type="text" value=last_name )
+						else
+							input.field( name="last_name" type="text" placeholder="Last Name" )
+						if phone_number
+							input.field( name="phone_number" type="text" value=phone_number )
+						else
+							input.field( name="phone_number" type="text" placeholder="Phone Number" )
+						if company_name_1
+							input.field( name="company_name_1" type="text" value=company_name_1 )
+						else
+							input.field( name="company_name_1" type="text" placeholder="Your Company" )
+						if address_1
+							input.field( name="address_1" type="text" value=address_1 )
+						else
+							input.field( name="address_1" type="text" placeholder="Address 1" )
+						if address_2
+							input.field( name="address_2" type="text" value=address_2 )
+						else
+							input.field( name="address_2" type="text" placeholder="Address 2" )
+						if city
+							input.field( name="city" type="text" value=city )
+						else
+							input.field( name="city" type="text" placeholder="City" )
+						select.select( name="country" )
+							if country
+								option( value="" disabled ) --- Select your Country ---
+								option( value="US" selected ) US
+							else
+								option( value="" selected disabled ) --- Select your Country ---
+								option( value="US" ) US
+						if state
+							input.field( name="state" type="text" value=state )
+						else
+							input.field( name="state" type="text" placeholder="State" )
+						if postal
+							input.field( name="postal" type="text" value=postal )
+						else
+							input.field( name="postal" type="text" placeholder="Postal Code" )
+		div.login.fieldset
+			h2.title Create Your Login
+			div.fields
+				if email
+					input.field( name="email" type="text" value=email )
+				else
+					input.field( name="email" type="text" placeholder="Email" )
+				p.caption Please enter a 6 to 15 character alphanumeric password.
+				input.field( name="password" type="text" placeholder="Password" )
+				input.field( name="confirm_password" type="text" placeholder="Confirm Password" )
+		div.salesrep.fieldset
+			h2.title Current Vision Wheel Sales Representative
+			div.fields
+				select.select( name="salesrep" )
+					if salesrep
+						option( value="" disabled ) --- Select your Vision Wheel Representitive ---
+					else
+						option( value="" selected disabled ) --- Select your Vision Wheel Representitive ---
+					each representative in salesreps
+						if salesrep && salesrep === representative.code
+							option( value=representative.code selected ) #{ representative.name }
+						else
+							option( value=representative.code ) #{ representative.name }
+					option( value="notlisted" ) --- Not Listed ---
+				p.caption Not seeing his / her name? Type it in below:
+				if salesrep_firstname
+					input.field( name="salesrep_firstname" type="text" value=salesrep_firstname)
+				else
+					input.field( name="salesrep_firstname" type="text" placeholder="Sales Rep First Name" )
+				if salesrep_lastname
+					input.field( name="salesrep_lastname" type="text" value=salesrep_lastname)
+				else
+					input.field( name="salesrep_lastname" type="text" placeholder="Sales Rep Last Name" )
+				p.caption Don't have one? Not a problem. Once you are approved, a representative will be in contact with you.
+		div.business.fieldset
+			h2.title Your Business
+			div.fields
+				if website
+					input.field( name="website" type="text" value=website )
+				else
+					input.field( name="website" type="text" placeholder="Website" )
+				div.radios
+					div.radio
+						h3.copy Are you a Retailer?
+						div.options
+							div.checkbox
+								if retailer === "true"
+									input( id="retailer-true" name="retailer" type="radio" value="true" checked)
+								else
+									input( id="retailer-true" name="retailer" type="radio" value="true" )
+								label( for="retailer-true" ) Yes
+							div.checkbox
+								if retailer === "false"
+									input( id="retailer-false" name="retailer" type="radio" value="false" checked)
+								else
+									input( id="retailer-false" name="retailer" type="radio" value="false" )
+								label( for="retailer-false" ) No
+					div.radio
+						h3.copy Are you a Wholesaler?
+						div.options
+							div.checkbox
+								if wholesaler === "true"
+									input( id="wholesaler-true" name="wholesaler" type="radio" value="true" checked)
+								else
+									input( id="wholesaler-true" name="wholesaler" type="radio" value="true" )
+								label( for="wholesaler-true" ) Yes
+							div.checkbox
+								if wholesaler === "false"
+									input( id="wholesaler-false" name="wholesaler" type="radio" value="false" checked)
+								else
+									input( id="wholesaler-false" name="wholesaler" type="radio" value="false" )
+								label( for="wholesaler-false" ) No
+					div.radio
+						h3.copy Do you conduct Online Sales?
+						div.options
+							div.checkbox
+								if onlinesales === "true"
+									input( id="onlinesales-true" name="onlinesales" type="radio" value="true" checked)
+								else
+									input( id="onlinesales-true" name="onlinesales" type="radio" value="true" )
+								label( for="onlinesales-true" ) Yes
+							div.checkbox
+								if onlinesales === "false"
+									input( id="onlinesales-false" name="onlinesales" type="radio" value="false" checked)
+								else
+									input( id="onlinesales-false" name="onlinesales" type="radio" value="false" )
+								label( for="onlinesales-false" ) No
+		div.comments.fieldset
+			h2.title Comments / Questions / Message
+			div.fields
+				if comments
+					textarea.textarea( name="comments" type="text")=comments
+				else
+					textarea.textarea( name="comments" type="text" )
+		div.submit
+			input( value="Submit" type="submit" )

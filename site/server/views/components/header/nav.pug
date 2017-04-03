@@ -1,0 +1,40 @@
+mixin link(item)
+	li.link
+		a( href=item.href )= item.title
+
+mixin expand(item)
+	li.expand
+		span= item.title
+		+expandable(item.items)
+
+mixin expandable(items)
+	ul.expandable
+		each item in items
+			if item.type=="link"
+				+link(item)
+			else if item.type=="section"	
+				+section(item)
+
+mixin section(item)
+	li.section
+		span= item.title
+		.sectionable
+			p.back Menu
+			if item.href
+				a( href=item.href )
+					span=item.title
+			else
+				span=item.title
+			ul
+				each sectionItem in item.items
+					if sectionItem.type=="link"
+						+link(sectionItem)
+
+nav.primary
+	if nav
+		ul.links
+			each item in nav.main
+				if item.type=="link"
+					+link(item)
+				else if item.type=="expand"
+					+expand(item)

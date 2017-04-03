@@ -1,0 +1,8 @@
+div.locations
+	div.subheader
+		h2.label Locations:
+	div.list
+		each location, key in item.locations
+			div.location
+				h3.key #{ key }
+				span.value #{ location }

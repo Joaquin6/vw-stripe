@@ -1,0 +1,48 @@
+extends ../templates/layout
+include _accountNav
+
+block styles
+	link( href="/css/account.css" rel="stylesheet" type="text/css" )
+block scripts
+	script( src="https://checkout.stripe.com/checkout.js" )
+	script( src="/js/account.js" )
+block main
+	#contentContainer
+		.header
+			h1.carret Pay Purchase Order
+			+nav("payPurchaseOrder")
+		.payPurchaseOrderContainer( data=stripeKey )
+			form.payPurchaseOrderForm( method="POST" action="/account/pay-purchase-order" )
+				select.purchaseOrders( name="id" data=JSON.stringify( purchaseOrders ) )
+					option( value="" disabled="disabled" selected="selected" ) Purchase Order #:
+					each purchaseOrder in purchaseOrders
+						option( value=purchaseOrder.id ) ##{ purchaseOrder.po } - #{ purchaseOrder.total }
+				div.comments
+					label Comments
+					textarea( name="comments" )
+				button.submit.disabled Pay With Card
+			div.payPurchaseOrderSuccess.hidden
+				div.message
+					span.checkmark
+					p.copy You have successfully paid your order. Print this page for your records and check your email for your official receipt.
+					span.cta Print
+				div.details
+					div.detail.orderNumber
+						span.label Order #:
+						span.value
+					div.detail.created
+						span.label Date Created:
+						span.value
+					div.detail.address
+						span.label Shipping To:
+						span.value.name
+						span.value.address_1
+						span.value.address_2
+						span.value.city-state-postal
+					div.detail.total
+						span.label Payment Total:
+						span.value
+				div.buttons
+					a.button( href="/account/pay-purchase-order" ) Make Another Payment
+					a.button( href="/account" ) My Account
+					a.button( href="/" ) Home

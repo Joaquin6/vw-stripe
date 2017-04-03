@@ -1,0 +1,61 @@
+{
+  "name": "vw-common-code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "models/index.js",
+  "scripts": {
+    "precommit": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "presets": [
+    "latest"
+  ],
+  "dependencies": {
+    "aws-sdk": "^2.7.10",
+    "bcrypt": "^1.0.0",
+    "clarify": "^2.0.0",
+    "compression": "^1.6.2",
+    "custom-err": "0.0.2",
+    "debug": "^2.6.0",
+    "fs-mkdirp": "^3.0.1",
+    "helprs": "^0.21.1",
+    "imagemin": "^5.2.2",
+    "imagemin-gifsicle": "^5.1.0",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-pngquant": "^5.0.0",
+    "imagemin-svgo": "^5.2.0",
+    "install": "^0.8.4",
+    "massive": "^2.5.0",
+    "moment": "^2.17.1",
+    "moment-range": "^2.2.0",
+    "mssql": "^3.3.0",
+    "node-cache": "^4.1.0",
+    "npm": "^3.8.9",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "pg": "^6.1.2",
+    "pug": "^2.0.0-beta6",
+    "q": "^1.4.1",
+    "readable-stream": "^2.2.2",
+    "stripe": "^4.14.0",
+    "superagent": "^3.3.0",
+    "timexe": "^0.9.8",
+    "underscore": "^1.8.3",
+    "util": "^0.10.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-latest": "^6.16.0",
+    "colors": "^1.1.2",
+    "heapdump": "^0.3.7",
+    "husky": "^0.13.1",
+    "ink-docstrap": "^1.3.0",
+    "jsdoc": "^3.4.0",
+    "memwatch-next": "^0.3.0",
+    "start-babel": "^2.1.1",
+    "winston": "^2.3.0",
+    "winston-daily-rotate-file": "^1.3.1"
+  }
+}

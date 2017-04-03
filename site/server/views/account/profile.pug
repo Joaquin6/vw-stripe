@@ -1,0 +1,74 @@
+extends ../templates/layout
+include _accountNav
+
+block styles
+	link( href="/css/account.css" rel="stylesheet" type="text/css" )
+block scripts
+	script(src='/js/account.js')
+block main
+	#contentContainer
+		.header
+			h1.carret Dealer Dashboard
+			+nav("manageProfile")
+		.profileContainer
+			- var userStatus = user.dealer!=null
+			h1.userName(class=userStatus?'pending':'approved')=user.first_name+' '+user.last_name
+			if userStatus
+				.userStatus= user.dealer.nav_customer_id
+			else
+				.userStatus Pending Dealer #
+
+			.userProfileContainer
+				.editBtn edit
+				.profileGroup
+					if userstatus
+						- var companyName = user.dealer.company_name_1 || user.dealer.company_name_2
+						- var companyWebsite = user.dealer.profile.website || ""
+						p.companyName #{ companyName }
+						p.companyWebsite #{ companyWebsite }
+				.profileGroup
+					p.userAddress1= user.address_1
+					if user.address_2
+						p.userAddress2= user.address_2
+					p.userCityStateZip= user.city+", "+user.state+" "+user.zip
+				.profileGroup
+					p.userEmail=user.phone_number
+				.profileGroup
+					p.userEmail=user.email
+			.userProfileEditContainer
+				form(action='/account/profile' method='post')
+					input(type='hidden' name='action' value='profile')
+					input(type='text', name='address_1' placeholder='Address 1' value=user.address_1)
+					input(type='text', name='address_2' placeholder='Address 2' value=user.address_2)
+					input(type='text', name='city' placeholder='City' value=user.city)
+					input(type='text', name='state' placeholder='State' value=user.state)
+					input(type='text', name='zip' placeholder='Zip' value=user.zip)
+					input(type='text', name='phone_number' placeholder='Phone Number' value=user.phone_number)
+					//- input(type='text', name='email' placeholder='Phone Number' value=user.email)
+					input.submit(type='submit' value='Submit')
+			if salesReps
+				.userSalesRepContainer
+					h2 Current Vision Wheel Sales Representitive
+					if error && error.salesRep
+						.error=error.salesRep
+					if success && success.salesRep
+						.success=success.salesRep
+					form(action='/account/profile' method='post')
+						input(type='hidden' name='action' value='salesRep')
+						select(name='salesRep')
+							each salesrep in salesReps
+								option( value=salesrep.id )=salesrep.name
+						input.submit(type='submit' value='Submit')
+			.userPasswordUpdateContainer
+				h2 Change Your Password
+				.aside Please enter a 6 to 15 character strong password
+				if error && error.password
+					.error=error.password
+				if success && success.password
+					.success=success.password
+				form(action='/account/profile' method='post')
+					input(type='hidden' name='action' value='password')
+					input(type='text', name='oldPassword' placeholder='Password')
+					input(type='text', name='newPassword' placeholder='New Password')
+					input(type='text', name='confirm' placeholder='Confirm Password')
+					input.submit(type='submit' value='Submit')

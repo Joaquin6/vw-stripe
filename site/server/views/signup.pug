@@ -1,0 +1,25 @@
+doctype html
+html
+	head
+		include ./components/analytics/head
+		meta( charset="UTF-8" )
+		meta( http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" )
+		title Vision Wheel | Dealers
+		meta( name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" )
+		link( href="/css/signup.css" rel="stylesheet" type="text/css" )
+	body
+		include ./components/analytics/body
+		div#wrapper
+			header
+				a( href="/" )
+					span.logo
+			div#main
+				if success
+					include ./components/signup/success
+				else
+					include ./components/signup/form
+			div#overlay
+			footer
+				include ./components/footer/social
+				include ./components/footer/legal
+		script( src="/js/signup.js" )

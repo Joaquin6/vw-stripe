@@ -1,0 +1,14 @@
+node_modules/
+.git/
+logs/
+coverage/
+vwd-migrations/
+.dockerignore
+Dockerfile
+Dockerfile.qa
+Dockerfile.prod
+.gitignore
+.env
+.eslintrc
+.editorconfig
+.gitlab-ci.yml

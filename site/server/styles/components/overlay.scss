@@ -1,0 +1,375 @@
+#overlay {
+	background-color: $overlaybg;
+	display: none;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: fixed;
+	top: 0; right: 0; bottom: 0; left: 0;
+	z-index: 2;
+
+	.add-to-cart-result {
+		margin: 0 auto;
+		max-width: 33rem;
+		padding: 10rem 1rem;
+		width: 100%;
+
+		.add-to-cart-message {
+			width: 100%;
+
+			.subheading {
+				background-color: $white;
+				font-family: $ff-rubik-medium;
+				font-size: $fs-subheading;
+				line-height: $lh-subheading;
+				padding: 1rem;
+				text-align: center;
+
+				.count {
+					color: $red;
+					text-transform: uppercase;
+				}
+				@media( min-width: $tablet ) {
+
+				}
+				@media( min-width: $desktop ) {
+					text-align: left;
+				}
+			}
+			.items {
+				background-color: $white;
+				margin: 1rem 0;
+				padding: 1rem;
+				width: 100%;
+
+				.item {
+					margin: 3rem 0 0 0;
+					width: 100%;
+
+					.thumbnail {
+						display: block;
+						margin: 0 0 1rem 0;
+						width: 33.33%;
+					}
+					.item-details {
+						width: 100%;
+
+						.label {
+							width: 100%;
+
+							.title {
+								@include f-title();
+								padding: 0 4rem 0 0;
+								text-transform: uppercase;
+							}
+						}
+						.specifications {
+							margin: 1rem 0;
+							width: 100%;
+
+							.specification {
+								@include f-body-1();
+								margin: 0.5rem 0 0 0;
+								width: 100%;
+
+								&.part-number {
+									@include f-body-2();
+								}
+								&:first-child {
+									margin: 0 0 0 0;
+								}
+							}
+						}
+						.location {
+							width: 100%;
+
+							.key {
+								@include f-body-2();
+								margin: 0 0 0.25rem 0;
+								width: 100%;
+							}
+							.label {
+								@include f-body-1();
+								width: 100%;
+							}
+							.address {
+								margin: 1rem 0;
+								width: 100%;
+
+								.street {
+									margin: 0 0 0.25rem 0;
+									width: 100%;
+								}
+							}
+						}
+					}
+					&:first-child {
+						margin: 0 0 0 0;
+					}
+					@media( min-width: $tablet ) {
+
+					}
+					@media( min-width: $desktop ) {
+						overflow: hidden;
+
+						.thumbnail {
+							float: left;
+							margin: 0 0 0 0;
+							width: 16.66%;
+						}
+						.item-details {
+							float: left;
+							padding: 0 0 0 1rem;
+							width: 83.33%;
+
+							.specifications {
+								float: left;
+								margin: 1rem 0 0 0;
+								padding: 0 0.5rem 0 0;
+								width: 50%;
+							}
+							.location {
+								float: left;
+								margin: 1rem 0 0 0;
+								padding: 0 0 0 0.5rem;
+								width: 50%;
+							}
+						}
+					}
+				}
+			}
+			.buttons {
+				width: 100%;
+
+				.checkout {
+					@include f-button();
+					background-color: $red;
+					color: $white;
+					opacity: 0.75;
+					width: 100%;
+
+					&:hover {
+						opacity: 1;
+						text-decoration: none;
+					}
+				}
+				.toggle-overlay {
+					@include f-button();
+					background-color: $white;
+					border: none;
+					margin: 0.5rem 0 0 0;
+					opacity: 0.75;
+					width: 100%;
+
+					&:hover {
+						opacity: 1;
+						text-decoration: none;
+					}
+				}
+				@media( min-width: $tablet ) {
+
+				}
+				@media( min-width: $desktop ) {
+					overflow: hidden;
+
+					.checkout {
+						float: right;
+						margin: 0 0 0 2%;
+						width: 49%;
+					}
+					.toggle-overlay {
+						float: right;
+						margin: 0 0 0 0;
+						width: 49%;
+					}
+				}
+			}
+		}
+	}
+	.remove-item-confirmation {
+		background-color: $white;
+		max-width: $mobile;
+		padding: 1rem;
+		position: absolute;
+		top: 50%; left: 50%;
+		@include transform( translate3d( -50%, -50%, 0 ) );
+		width: 100%;
+
+		.message {
+			@include f-title();
+			text-align: center;
+			width: 100%;
+		}
+		.buttons {
+			margin: 1rem 0 0 0;
+			text-align: center;
+			width: 100%;
+
+			.close {
+				@include f-button();
+				background-color: $red;
+				border: none;
+				color: $white;
+				display: inline-block;
+				opacity: 0.75;
+				width: 49%;
+
+				&:hover {
+					opacity: 1;
+					text-decoration: none;
+				}
+			}
+			.submit {
+				@include f-button();
+				background-color: $red;
+				color: $white;
+				display: inline-block;
+				margin: 0 0 0 2%;
+				opacity: 0.75;
+				width: 49%;
+
+				&:hover {
+					opacity: 1;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+	.submit-po-error, .submit-stripe-error, .submit-shipping-error {
+		background-color: $white;
+		max-width: $mobile;
+		padding: 1rem;
+		position: absolute;
+		top: 50%; left: 50%;
+		@include transform( translate3d( -50%, -50%, 0 ) );
+		width: 100%;
+
+		.message {
+			@include f-title();
+			text-align: center;
+			width: 100%;
+		}
+		.caption {
+			@include f-caption();
+			margin: 0.5rem 0 0 0;
+			text-align: center;
+			width: 100%;
+
+			.key {
+				font-weight: $fw-medium;
+			}
+		}
+		.buttons {
+			margin: 1rem 0 0 0;
+			text-align: center;
+			width: 100%;
+
+			.retry {
+				@include f-button();
+				background-color: $red;
+				color: $white;
+				display: inline-block;
+				opacity: 0.75;
+				width: 100%;
+
+				&:hover {
+					opacity: 1;
+					text-decoration: none;
+				}
+			}
+			.submit {
+				@include f-button();
+				background-color: $red;
+				color: $white;
+				display: inline-block;
+				margin: 0.5rem 0 0 0;
+				opacity: 0.75;
+				width: 100%;
+
+				&:hover {
+					opacity: 1;
+					text-decoration: none;
+				}
+			}
+			.close {
+				@include f-button();
+				background-color: $red;
+				border: none;
+				color: $white;
+				display: inline-block;
+				margin: 0.5rem 0 0 0;
+				opacity: 0.75;
+				width: 100%;
+
+				&:hover {
+					opacity: 1;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+	.loading-indicator {
+		position: absolute;
+		top: 50%; left: 50%;
+		@include transform( translate3d( -50%, -50%, 0 ) );
+
+		.loading-icon {
+			background-image: url( "https://placehold.it/48x48" );
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: 100% auto;
+			display: block;
+			height: 3rem;
+			width: 3rem;
+		}
+	}
+	&.toggle {
+		display: block;
+
+		.loading-indicator {
+
+			.loading-icon {
+				@include animation( spin 1s ease-in-out 0s infinite );
+			}
+		}
+	}
+}
+@-moz-keyframes spin {
+	from {
+		@include transform( rotate( 0deg ) );
+	}
+	to {
+		@include transform( rotate( 360deg ) );
+	}
+}
+@-ms-keyframes spin {
+	from {
+		@include transform( rotate( 0deg ) );
+	}
+	to {
+		@include transform( rotate( 360deg ) );
+	}
+}
+@-o-keyframes spin {
+	from {
+		@include transform( rotate( 0deg ) );
+	}
+	to {
+		@include transform( rotate( 360deg ) );
+	}
+}
+@-webkit-keyframes spin {
+	from {
+		@include transform( rotate( 0deg ) );
+	}
+	to {
+		@include transform( rotate( 360deg ) );
+	}
+}
+@keyframes spin {
+	from {
+		@include transform( rotate( 0deg ) );
+	}
+	to {
+		@include transform( rotate( 360deg ) );
+	}
+}

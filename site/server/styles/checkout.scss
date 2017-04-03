@@ -1,0 +1,71 @@
+@import "./partials/variables";
+@import "./partials/typography";
+@import "./partials/mixins";
+@import "./components/reset";
+@import "./components/wrapper";
+@import "./components/header";
+@import "./components/nav";
+@import "./components/footer";
+@import "./components/checkout/details";
+@import "./components/checkout/shipping";
+@import "./components/checkout/confirmation";
+@import "./components/checkout/success";
+@import "./components/overlay";
+#checkout {
+	width: 100%;
+}
+.steps {
+	background-color: $darkgrey;
+
+	.list {
+		margin: 0 auto;
+		max-width: $mw-large;
+		overflow: hidden;
+		width: 100%;
+
+		.list-item {
+			float: left;
+			height: 5rem;
+			position: relative;
+			width: 33.33%;
+
+			.label {
+				@include f-caption();
+				color: $white;
+				display: block;
+				padding: 2rem 1rem 1rem 1rem;
+				position: absolute;
+				top: 2rem;
+				text-align: center;
+				text-transform: uppercase;
+				@include transform( translate3d( 0, -50%, 0 ) );
+				width: 100%;
+			}
+			.underline {
+				background-color: $red;
+				height: 0.5rem;
+				margin: 0 0 0 0;
+				opacity: 0;
+				position: absolute;
+				bottom: 0;
+				right: 1rem; left: 1rem;
+			}
+			&.active {
+
+				.underline {
+					opacity: 1;
+				}
+			}
+			@media( min-width: $tablet ) {
+
+			}
+			@media( min-width: $desktop ) {
+				max-width: 8rem;
+			}
+		}
+	}
+}
+.content {
+	padding: 3rem 0;
+	width: 100%;
+}

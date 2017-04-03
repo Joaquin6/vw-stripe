@@ -1,0 +1,147 @@
+extends ../templates/layout
+
+include _accountNav
+
+mixin dateformat(date)
+	-
+		var d = new Date(date)
+	span=(d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear()
+mixin dateformatOption(value, date, po)
+	-
+		var d = new Date(date)
+		var date = (d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear()
+		var po = (po != null && po.length >0) ? po : "Pending"
+	option(value=value)="Order: "+date+" - "+po
+mixin shipping(agentCode, methodCode)
+	
+	-	var agent
+	-	agent = (agentCode.toLowerCase()=="ups")? "UPS":agent
+	-	agent = (agentCode.toLowerCase()=="fedex")? "FedEX":agent
+	-	var method
+	-	method = (methodCode.toLowerCase()=="standard")? "(Standard Ground)": method
+	-	method = (methodCode.toLowerCase()=="ltl")? "(LTL)": method
+	-	method = (methodCode.toLowerCase()=="expedited")? "(Expedited)": method
+	p=agent +" "+ method
+mixin shippingMethod(item)
+	.shippingMethod
+		p.strong Shipping Method
+		if (item.shipping_options.shipping_method=="pickup")
+			p Vision Wheel - Pickup
+			p.small Please call the #{ item.fulfilment_location.name } to schedule your pick up.
+		else
+			+shipping(item.shipping_options.shipping_agent, item.shipping_options.shipping_method)
+			- var thrdParty = item.shipping_options.third_party_account_number
+			if (thrdParty && thrdParty.length>0)
+				p="Account Number: "+thrdParty
+	if item.shipping_options.shipped && item.shipping_options.tracking_number.length>0
+		- var trackingNo = item.shipping_options.tracking_number
+		- var ups = "https://wwwapps.ups.com/WebTracking/track?track=yes&trackNums="+trackingNo
+		- var fedex = "https://www.fedex.com/apps/fedextrack/?tracknumbers="+trackingNo
+		- var trackingLink = item.shipping_options.shipping_agent.toLowerCase()=='ups'?ups:fedex
+		if trackingLink
+			.shipped
+				p.strong Track this order:
+				a(href=trackingLink, target="_blank")= trackingNo
+
+block styles
+	link( href="/css/account.css" rel="stylesheet" type="text/css" )
+block scripts
+	script(src='/js/account.js')
+block main
+	#contentContainer
+		.header
+			h1.carret Order History
+			+nav("orderHistory")
+	.orderContainer
+		if (orders.length)
+			#orderSelectorContainer
+				span Show:
+				select#orderSelector
+					option="Choose an order"
+					each order, index in orders
+						+dateformatOption(index, order.created, order.po_number)
+			#orders
+				each order in orders
+					.order
+						.orderHeaderContainer
+							.orderHeader
+								.orderDate
+									p.strong Order Placed
+									p
+										+dateformat(order.created)
+								.orderTotal
+									p.strong Total
+									p= order.total_invoice_amount
+						.orderPropsContainer
+							.orderProps
+								.orderShippingInfo
+									p.strong Shipped To:
+									p= order.customer_billing_info.customer_name
+									p= order.customer_billing_info.company_name
+									p= order.ship_to_info.address_1
+									p= order.ship_to_info.address_2
+									p= order.ship_to_info.city+", "+order.ship_to_info.state+" "+order.ship_to_info.zip
+								.orderNumbers
+									p.strong Purchase Order #:
+									- var orderNumber = (order.po_number != null && order.po_number.length >0) ? order.po_number : "Pending"
+									p= orderNumber
+						.orderItems
+							- var index = 0
+							each item, key in order.sale_items
+								- index++
+								- var imgsrc = (item.item_description.image) ? item.item_description.image : "https://placehold.it/128x128"
+								.orderItem
+									if item.shipping_options.shipped
+										p.strong.shipped="Item #"+index+" - SHIPPED"
+									else 
+										p.strong="Item #"+index
+									.productThumb
+										img(src=imgsrc)
+										//- img(src="https://placehold.it/128x128")
+									.itemInfoContainer
+										.itemInfo
+											p.strong=item.item_description.product_name
+											p="Part Number: "+item.item_no
+											p="Size: "+ item.item_description.size
+											p="Qty: "+ item.qty
+											p=item.unit_price+" each"
+									.shippingStatusContainer
+										.shippingStatus
+											p.strong Shipping From
+											p= item.fulfilment_location.name
+											p= item.fulfilment_location.address
+											p= item.fulfilment_location.city+", "+item.fulfilment_location.state+" "+item.fulfilment_location.postal
+										+shippingMethod(item)
+									//- p= JSON.stringify(item)
+						.paymentDetailsContainer
+							.paymentDetails
+								p.strongLined Payment Details
+								p.strong Payment Method:
+								if order.payment.payment_method=='CHARGE'
+									p Charge to Account: 
+										span= order.customer_id
+								else if order.payment.payment_method.indexOf('CREDIT')>=0
+									p Credit Card: 
+										span= order.payment.CCInfo
+
+							.charges
+								if order.payment.paid==true
+									p.strongLined Paid
+								else
+									p.strongLined Charges
+								p.strong Subtotal:
+								p= order.subtotal_amount
+								p.strong Shipping:
+								p= order.freight_total
+								p.strong Tax:
+								p= order.tax_amount
+								p.strong Total:
+								p= order.total_invoice_amount
+		else
+			#orderSelectorContainer
+				p.strong You have no Orders in your history yet!
+				a.button( href="/account" ) Back to Account
+		if error
+			.error=error
+
+

@@ -1,0 +1,10 @@
+- var price = item.price.dealer || item.price.retail
+- var quantity = 0
+- var subtotal = 0;
+each location, key in item.locations
+	- quantity += location
+- subtotal = quantity * price
+- subtotals += subtotal
+div.subtotal
+	h3.key Subtotal:
+	span.value $#{ subtotal }

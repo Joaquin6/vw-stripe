@@ -1,0 +1,62 @@
+@import "./partials/variables";
+@import "./partials/typography";
+@import "./partials/mixins";
+@import "./components/reset";
+@import "./components/wrapper";
+@import "./components/header";
+@import "./components/nav";
+@import "./components/footer";
+#brand {
+	padding: 0 0 3rem 0;
+	width: 100%;
+}
+.hero {
+	@include hero();
+}
+.header {
+	margin: 0 auto;
+	max-width: $mw-large;
+	padding: 3rem 1rem;
+	width: 100%;
+
+	.logo {
+		display: block;
+		margin: 0 auto;
+		max-width: $mobile;
+		width: 100%;
+	}
+	.subheading{
+		@include f-subheading();
+		margin: 3rem 0 0 0;
+	}
+}
+.sections {
+	margin: 0 auto;
+	max-width: $mw-large;
+	padding: 0 1rem;
+	width: 100%;
+
+	.products {
+		margin: 3rem 0 0 0;
+		width: 100%;
+
+		.subheading {
+			@include f-subheading();
+			margin: 0 0 1rem 0;
+			text-transform: uppercase;
+		}
+		.list {
+			width: 100%;
+
+			&.grid {
+				@include grid();
+			}
+			&.horizontal-scroll {
+				@include horizontal-scroll();
+			}
+		}
+		&:first-child {
+			margin: 0 0 0 0;
+		}
+	}
+}

@@ -1,0 +1,41 @@
+extends ./templates/layout
+
+block styles
+	link( href="/css/account.css" rel="stylesheet" type="text/css" )
+	style.
+		#map {
+			height: 400px;
+			width: 100%;
+		}
+block scripts
+	script(src='/js/locations.js')
+	script(async, defer, src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy59sdevflQUjyS9Uo-uYX_MYmMv1tIXs&callback=initMap")
+
+block main
+	#contentContainer
+		.header
+			h1.title Locations
+		.locationsContainer
+			.locationMapContainer
+				#map
+			.locations
+				-var index = 1
+				-for (var key in warehouses)	
+					-var location = warehouses[key]
+					.warehouse
+						p.number=index
+						- index++
+						h2= location.area
+						p= location.address
+						p= location.city+", "+location.state+" "+location.postal
+						hr
+						if location.tollfree
+							p= "Toll Free: "+location.tollfree
+						if location.localPhone
+							p= "Local: "+ location.localPhone
+						if location.fax
+							p= "Fax: " + location.fax
+
+
+
+

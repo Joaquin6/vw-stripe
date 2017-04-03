@@ -1,0 +1,20 @@
+div.tire.item
+	div.subheader
+		h2.subtitle #{ item.specification.brand }, #{ item.specification.tires } - #{ item.specification.pattern }
+		- var classNamePrice = "price"
+		if item.price.dealer
+			- classNamePrice += " has-dealer"
+			div( class=classNamePrice )
+				span.retail $#{ item.price.retail }
+				if item.price.dealer
+					span.dealer $#{ item.price.dealer }
+	div.specifications
+		div.subheader
+			h3.label Specifications:
+		div.list
+			each specification, key in item.specification
+				div.specification
+					h4.key #{ key }:
+					span.value #{ specification }
+	include ./locations
+	include ./subtotal

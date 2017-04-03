@@ -1,0 +1,327 @@
+#item-selector {
+	padding: 0 1rem;
+	width: 100%;
+
+	.section {
+		width: 100%;
+
+		.label {
+			display: table;
+			width: 100%;
+
+			.key {
+				color: $red;
+				display: table-cell;
+				font-family: $ff-rubik-medium;
+				font-size: $fs-subheading;
+				line-height: $lh-subheading;
+				padding: 0 0.5rem 0 0;
+				text-transform: uppercase;
+				vertical-align: top;
+				white-space: nowrap;
+			}
+			.content {
+				display: table-cell;
+				vertical-align: top;
+				width: 100%;
+
+				.subheading {
+					color: $black;
+					display: block;
+					font-family: $ff-rubik-medium;
+					font-size: $fs-subheading;
+					line-height: $lh-subheading;
+					text-transform: uppercase;
+					width: 100%;
+				}
+				.caption {
+					@include f-caption();
+					color: $grey;
+					display: block;
+					margin: 0.25rem 0 0 0;
+					width: 100%;
+
+					.copy {
+						display: block;
+						width: 100%;
+					}
+					.link {
+						color: $red;
+						display: block;
+						margin: 0.25rem 0 0 0;
+						width: 100%;
+					}
+				}
+			}
+			&.item {
+				margin: 3rem 0 0 0;
+				padding: 0 0 0 1.25rem;
+			}
+		}
+		.list {
+			margin: 1rem 0 0 0;
+			padding: 0 0 0 1.25rem;
+			width: 100%;
+
+			&.horizontal-scroll {
+				@include horizontal-scroll();
+			}
+		}
+		.table {
+			@include table();
+			margin: 1rem 0 0 0;
+			padding: 0 0 0 1.25rem;
+		}
+		.notes {
+			@include f-caption();
+			color: $grey;
+			margin: 0.25rem 0 0 0;
+			padding: 0 0 0 1.25rem;
+			width: 100%;
+
+			.key {
+				font-weight: $fw-medium;
+				padding: 0 0.5rem 0 0;
+				text-transform: uppercase;
+			}
+			.copy {
+
+			}
+		}
+		&.finishes {
+
+			.list {
+
+				.list-item {
+					cursor: pointer;
+
+					&:hover {
+						color: $red;
+					}
+					&.selected {
+						color: $red;
+					}
+				}
+			}
+		}
+		&.locations {
+
+			.list {
+				margin: 3rem 0 0 0;
+
+				.list-item {
+					width: 100%;
+
+					.details {
+						width: 100%;
+
+						.name {
+							font-family: $ff-rubik-medium;
+							font-size: $fs-subheading;
+							line-height: $lh-subheading;
+							width: 100%;
+						}
+						.address {
+							color: $grey;
+							margin: 0.25rem 0 0 0;
+							width: 100%;
+
+							.copy {
+								@include f-body-1();
+							}
+						}
+					}
+					.quantity {
+						margin: 2rem 0;
+						overflow: hidden;
+						width: 100%;
+
+						.subheading {
+							color: $red;
+							display: block;
+							font-family: $ff-rubik-medium;
+							font-size: $fs-subheading;
+							line-height: $lh-subheading;
+							margin: 0 0 0.25rem 0;
+							width: 100%;
+
+							.copy {
+								display: block;
+								width: 100%;
+							}
+						}
+						.amount {
+							@include f-subheading();
+							border: 2px solid $lightgrey;
+							color: $grey;
+							display: block;
+							height: 3rem;
+							outline: none;
+							padding: 0.5rem;
+							text-align: center;
+							width: 3rem;
+						}
+						.available {
+							float: left;
+							padding: 0 0.5rem 0 0;
+							width: 50%;
+						}
+						.requested {
+							float: left;
+							padding: 0 0 0 0.5rem;
+							width: 50%;
+						}
+					}
+					.checkbox {
+						@include checkbox();
+						display: table;
+						height: 1.75rem;
+						width: 100%;
+
+						label {
+							color: $grey;
+							display: table-cell;
+							padding: 0 0 0 2rem;
+							vertical-align: middle;
+
+							&:before {
+								height: 1.5rem;
+								width: 1.5rem;
+							}
+						}
+						input:checked + label {
+
+							&:after {
+								height: 1.75rem;
+								top: -0.25rem; left: 0.125rem;
+								width: 2rem;
+							}
+						}
+					}
+				}
+			}
+		}
+		&.ply-and-sizes {
+
+			.list {
+
+				.list-item {
+					@include f-subheading();
+					cursor: pointer;
+					margin: 0 0 1rem 0;
+					width: 100%;
+
+					.key {
+						display: inline-block;
+						margin: 0 0.5rem 0 0;
+					}
+					.value {
+						display: inline-block;
+						margin: 0 2rem 0 0;
+						text-decoration: underline;
+
+						&:last-child {
+							margin: 0 0 0 0;
+						}
+					}
+					&:hover {
+						color: $red;
+					}
+					&.selected {
+						color: $red;
+					}
+					&:last-child {
+						margin: 0 0 0 0;
+					}
+				}
+			}
+		}
+		&.sizes {
+
+			.list {
+				margin: 0 0 0 0;
+
+				.list-item {
+					@include f-subheading();
+					cursor: pointer;
+					display: inline-block;
+					margin: 1rem 3rem 0 0;
+					text-decoration: underline;
+
+					&:hover {
+						color: $red;
+					}
+					&.selected {
+						color: $red;
+					}
+					&:last-child {
+						margin: 1rem 0 0 0;
+					}
+				}
+			}
+		}
+		&.has-selected {
+
+			.list {
+
+				.list-item {
+					opacity: 0.5;
+
+					&:hover {
+						opacity: 1;
+					}
+					&.selected {
+						opacity: 1;
+					}
+				}
+			}
+			.table {
+
+				.content {
+
+					.rows {
+
+						.row {
+							opacity: 0.5;
+
+							&:hover {
+								opacity: 1;
+							}
+							&.columns, &.selected {
+								opacity: 1;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.underline {
+		@include underline();
+		margin: 3rem 0;
+	}
+	.add-to-cart {
+		@include f-button();
+		margin: 3rem 0 0 0;
+		width: 100%;
+
+		&.disabled {
+			opacity: 0.5;
+		}
+		@media( min-width: $tablet ) {
+
+		}
+		@media( min-width: $desktop ) {
+			width: 33.33%;
+		}
+	}
+}
+#accessory-selector {
+	width: 100%;
+}
+#tire-selector {
+	width: 100%;
+}
+#wheel-selector {
+	width: 100%;
+}

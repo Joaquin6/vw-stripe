@@ -1,0 +1,1 @@
+DELETE FROM $1.$2

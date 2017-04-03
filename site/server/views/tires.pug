@@ -1,0 +1,55 @@
+extends ./templates/layout
+
+block main
+	-
+		var slider = [
+			{
+				href: "/products/atv",
+				src: "/img/tires/Tires_ATV.jpg"
+			},
+			{
+				href: "/products/golf",
+				src: "/img/tires/Tires_GOLF.jpg"
+			},
+			{
+				href: "/products/l-and-g",
+				src: "/img/tires/Tires_LG.jpg"
+			},
+			{
+				href: "/products/trailer",
+				src: "/img/tires/Tires_TRAILER.jpg"
+			}
+		]
+	div#tires
+		div.hero
+			div.copy
+				h1.headline Tires
+				p.subheading With a comprehensive inventory of tires for vehicles ranging from trailers to ATVs, Vision Wheel is here to help make it simple to find the right ones to work with the appearance and performance you’re looking for.
+		div.filter-cta
+			h2.title Not Sure Where To Start?
+			p.copy Let us help. Try our product filter tool to help narrow down the search.
+		div.filter( data=filters )
+		div.slideshow
+			h2.subheading Categories
+			include ./components/slider
+		div.sections
+			div.products
+				h2.subheading Most Popular Products
+				div.list.horizontal-scroll
+					each product in products
+						- var src = (product.image.list[0] && product.image.list[0].trim() !== "") ? product.image.list[0] : "https://placehold.it/128x128"
+						div.horizontal-scroll-item
+							a.horizontal-scroll-item-link( href=`/products/${ product.brand_slug }/${ product.slug }` )
+								div.thumbnail-container
+									img.thumbnail( src=src )
+								h3.copy #{ product.name }
+			//- div.products
+			//- 	h2.subheading On Clearance
+			//- 	div.list.horizontal-scroll
+			//- 		each product in products
+			//- 			- var src = (product.image.list[0] && product.image.list[0].trim() !== "") ? product.image.list[0] : "https://placehold.it/128x128"
+			//- 			div.horizontal-scroll-item
+			//- 				a.horizontal-scroll-item-link( href=`/products/${ product.brand_slug }/${ product.slug }` )
+			//- 					div.thumbnail-container
+			//- 						img.thumbnail( src=src )
+			//- 					h3.copy #{ product.name }

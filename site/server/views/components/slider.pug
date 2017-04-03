@@ -1,0 +1,15 @@
+mixin slide(content)
+	- var src = content.src
+	- var href = content.href
+	div.slide
+		if href
+			a.thumbnail-link( href=href )
+				img.thumbnail( src=src )
+		else
+			img.thumbnail( src=src )
+
+div.slider
+	each slide in slider
+		+slide( slide )
+	button.slider-prev
+	button.slider-next

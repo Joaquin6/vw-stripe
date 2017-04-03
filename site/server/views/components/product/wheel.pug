@@ -1,0 +1,99 @@
+div#wheel-selector
+	- var uniqueFinishes = {}
+	- var uniqueSizes = {}
+	- var finishes = []
+	- var finishImages = {}
+	- var sizes = []
+	each image in product.image.list
+		if !finishImages[image.finish]
+			- finishImages[image.finish] = image.src
+	each item in items
+		- var specification = item.specification
+		- var finish = specification.finish
+		- var size = specification.size
+		if !uniqueFinishes[finish]
+			- uniqueFinishes[finish] = true
+			- finishes.push( finish )
+		if !uniqueSizes[size]
+			- uniqueSizes[size] = true
+			- sizes.push( size )
+	div.sizes
+		div.label
+			span 1. 
+			span Choose A Size
+		div.list
+			each size in sizes
+				span.size #{ size }
+	div.finishes
+		div.label
+			span 2. 
+			span Choose A Finish
+		div.list.horizontal-scroll
+			each finish in finishes
+				div.finish.horizontal-scroll-item
+					img.thumbnail( src=finishImages[finish] )
+					span #{ finish }
+	div.items
+		div.label
+			span 3. 
+			span Choose An Item
+		div.table
+			div.columns
+				span.size Size
+				span.bolt-pattern_1 BP
+				span.bolt-pattern_2 BP 2
+				span.part-number Part Number
+				span.finish Finish
+				span.hub-bore Bore
+				span.offset Offset
+				span.bs BSM (in)
+				span.cap Cap Num
+				span.load-rating Rating (lb)
+				span.weight Weight (lb)
+				span.lug-type Lug Type
+				span.lip-size Lip Size
+			div.rows
+				each item in items
+					- var specification = item.specification
+					div.row
+						span.size #{ specification.size }
+						span.bolt-pattern_1 #{ specification.boltpattern1_inches }
+						span.bolt-pattern_2 #{ specification.boltpattern2_inches }
+						span.part-number #{ item.part_number }
+						span.finish #{ specification.finish }
+						span.hub-bore #{ specification.hub_bore }
+						span.offset #{ specification.offset }
+						span.bs #{ specification.bs }
+						span.cap #{ specification.cap }
+						span.load-rating #{ specification.load_rating }
+						span.weight
+						span.lug-type
+						span.lip-size
+		div.item
+			div.label
+				span Part Number: 
+				span
+	div.warehouses
+		div.label
+			span 4. 
+			span Choose A Warehouse
+		div.list
+			each warehouse in warehouses
+				div.warehouse
+					div.label
+						span #{ warehouse.name }
+						div.address
+							span #{ warehouse.address }, 
+							span #{ warehouse.city }, 
+							span #{ warehouse.state }, 
+							span #{ warehouse.postal }
+					div.quantity
+						div.available
+							span Available Inventory
+							span
+						div.requested
+							span Requested Quantity
+							input
+					div.checkbox
+						span Order from this location
+	button.add-to-cart Add To Cart

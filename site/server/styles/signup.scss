@@ -1,0 +1,301 @@
+@import "./partials/variables";
+@import "./partials/typography";
+@import "./partials/mixins";
+@import "./components/reset";
+@import "./components/wrapper";
+@import "./components/footer";
+@import "./components/overlay";
+#wrapper {
+	padding: 5rem 0 0 0;
+}
+header {
+	background-color: $white;
+	border-bottom: 2px solid $lightgrey;
+	height: 5rem;
+	padding: 0.5rem 0;
+	position: fixed;
+	top: 0; left: 0;
+	width: 100%;
+	z-index: 1;
+
+	.logo {
+		background-image: url( "../images/generic/VWheelLogo-Gray-01.svg" );
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: contain;
+		display: block;
+		height: 4rem;
+		width: 100%;
+	}
+}
+#signup {
+	padding: 3rem 1rem;
+	width: 100%;
+
+	.title {
+		@include f-title();
+		padding: 1rem 0;
+		text-align: center;
+		text-transform: uppercase;
+		width: 100%;
+	}
+	&.success {
+		background-image: url( "../images/signup/background.jpg" );
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		color: $white;
+		text-align: center;
+
+		.message {
+			margin: 0 auto;
+			max-width: $mw-medium;
+			width: 100%;
+
+			.title {
+				@include f-title();
+				margin: 0 0 0.5rem 0;
+				padding: 0 0 0 0;
+				width: 100%;
+			}
+			.copy {
+				@include f-subheading();
+				display: block;
+				margin: 0 0 0.25rem 0;
+
+				&:last-child {
+					margin: 0 0 0 0;
+				}
+			}
+			.caption {
+				@include f-body-1();
+				color: $white;
+			}
+			.links {
+				margin: 1rem 0 0 0;
+				width: 100%;
+
+				.link {
+					@include caret( "red" );
+					@include f-subheading();
+					color: $white;
+					display: block;
+					margin: 0.5rem 0 0 0;
+					width: 100%;
+
+					&:after {
+						height: 0.675rem;
+						margin: 0 0 0 0.5rem;
+						width: 0.675rem;
+					}
+					&:first-child {
+						margin: 0 0 0 0;
+					}
+				}
+			}
+		}
+		.underline {
+			@include underline();
+			margin: 3rem auto;
+			max-width: $mw-medium;
+			width: 100%;
+		}
+		.button {
+			@include f-button();
+			color: $white;
+			margin: 3rem auto 0 auto;
+			max-width: $mw-small;
+			width: 100%;
+		}
+	}
+}
+.subheading {
+	@include f-subheading();
+	padding: 1rem 0;
+	text-align: center;
+	text-transform: uppercase;
+	width: 100%;
+}
+.caption {
+	@include f-caption();
+}
+.error {
+	color:$red;
+	margin: 0 0 1rem;
+	text-align: center;
+}
+form {
+	margin: 0 auto;
+	max-width: $mw-large;
+	width: 100%;
+
+	.fieldset {
+		margin: 0 0 1rem 0;
+		width: 100%;
+
+		.fields {
+			width: 100%;
+
+			.field {
+				@include f-input();
+				margin: 0.5rem 0 0 0;
+				width: 100%;
+
+				&:first-child {
+					margin: 0 0 0 0;
+				}
+			}
+			.select {
+				@include f-input();
+				background-color: $white;
+				border: 2px solid $lightgrey;
+				margin: 0.5rem 0;
+				width: 100%;
+
+				option {
+					padding: 1rem;
+					width: 100%;
+				}
+			}
+			.textarea {
+				background-color: $white;
+				border: 2px solid $lightgrey;
+				height: 8rem;
+				resize: none;
+				width: 100%;
+			}
+			.caption {
+				margin: 0.5rem 0 0 0;
+				overflow: hidden;
+				width: 100%;
+
+				.copy {
+					display: inline-block;
+					margin: 0 0.5rem 0 0;
+				}
+				.cta {
+					color: $red;
+					cursor: pointer;
+					display: inline-block;
+					text-decoration: underline;
+				}
+			}
+			.radios {
+				margin: 1rem 0 0 0;
+				overflow: hidden;
+				width: 100%;
+
+				.radio {
+					float: left;
+					margin: 0 0 1rem 0;
+					width: 50%;
+
+					.copy {
+						@include f-body-1();
+					}
+					.options {
+						margin: 0.5rem 0 0 0;
+						width: 100%;
+
+						.checkbox {
+							@include checkbox();
+  						display: inline-block;
+  						margin: 0 0 0 1rem;
+  						text-align: center;
+  						vertical-align: top;
+  						width: 2.75rem;
+
+  						label {
+    						padding: 3rem 0 0 0;
+
+								&:before {
+									height: 2.5rem;
+									width: 2.5rem;
+								}
+  						}
+							input:checked + label {
+
+								&:after {
+									height: 2.75rem;
+									top: -0.25rem; left: 0.125rem;
+									width: 3rem;
+								}
+							}
+						}
+					}
+					&:last-child {
+						margin: 0 0 0 0;
+					}
+				}
+			}
+		}
+		&.customer-number {
+
+			.caption {
+				margin: 0.5rem 0 1rem 0;
+			}
+		}
+		&:last-child {
+			margin: 0 0 0 0;
+		}
+	}
+	.submit {
+		width: 100%;
+
+		input {
+			@include f-button();
+		}
+	}
+	@media( min-width: $tablet ) {
+
+	}
+	@media( min-width: $desktop ) {
+		overflow: hidden;
+
+		.fieldset {
+
+			&.customer-number, &.business {
+				float: left;
+				padding: 0 0.5rem 0 0;
+				width: 50%;
+			}
+			&.login, &.salesrep, &.comments {
+				float: right;
+				padding: 0 0 0 0.5rem;
+				width: 50%;
+			}
+			&.business {
+				clear: left;
+			}
+		}
+		.submit {
+			float: left;
+
+			input {
+				margin: 0 auto;
+			}
+		}
+	}
+}
+#overlay {
+	padding: 8rem 0 0 0;
+
+	.customer-number-example-close {
+		color: $white;
+		cursor: pointer;
+		display: block;
+		font-size: 3rem;
+		line-height: 3rem;
+		margin: 0 auto 0.5rem auto;
+		max-width: $tablet;
+		text-align: right;
+		text-transform: uppercase;
+		width: 100%;
+	}
+	.customer-number-example {
+		display: block;
+		margin: 0 auto 8rem auto;
+		max-width: $tablet;
+		width: 100%;
+	}
+}

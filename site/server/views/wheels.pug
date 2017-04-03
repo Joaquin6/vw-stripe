@@ -1,0 +1,67 @@
+extends ./templates/layout
+
+block main
+	-
+		var slider = [
+			{
+				href: "/products/american-muscle",
+				src: "/img/wheels/Wheels_AM.jpg"
+			},
+			{
+				href: "/products/vision-atvgolf",
+				src: "/img/wheels/Wheels_ATV.jpg"
+			},
+			{
+				href: "/products/vision-hd",
+				src: "/img/wheels/Wheels_HD.jpg"
+			},
+			{
+				href: "/products/milanni",
+				src: "/img/wheels/Wheels_Milanni.jpg"
+			},
+			{
+				href: "/products/vision-off-road",
+				src: "/img/wheels/Wheels_OffRoad.jpg"
+			},
+			{
+				href: "/products/sport-concepts",
+				src: "/img/wheels/Wheels_SC.jpg"
+			},
+			{
+				href: "/products/vision-wheel",
+				src: "/img/wheels/Wheels_VW.jpg"
+			}
+		]
+	div#wheels
+		div.hero
+			div.copy
+				h1.headline Wheels
+				p.subheading Vision Wheel has a wide variety of wheels and accessories. Check out our 2016 lineup which includes top styles such as the 411 Arc, 420 Locker and more!
+		div.filter-cta
+			h2.title Not Sure Where To Start?
+			p.copy Let us help. Try our product filter tool to help narrow down the search.
+		div.filter( data=filters )
+		div.slideshow
+			h2.subheading Featured Brands
+			include ./components/slider
+		div.sections
+			div.products
+				h2.subheading Most Popular Products
+				div.list.horizontal-scroll
+					each product in products
+						- var src = (product.image.list[0] && product.image.list[0].src.trim() !== "") ? product.image.list[0].src : "https://placehold.it/128x128"
+						div.horizontal-scroll-item
+							a.horizontal-scroll-item-link( href=`/products/${ product.brand_slug }/${ product.slug }` )
+								div.thumbnail-container
+									img.thumbnail( src=src )
+								h3.copy #{ product.name }
+			//- div.products
+			//- 	h2.subheading On Clearance
+			//- 	div.list.horizontal-scroll
+			//- 		each product in products
+			//- 			- var src = (product.image.list[0] && product.image.list[0].src.trim() !== "") ? product.image.list[0].src : "https://placehold.it/128x128"
+			//- 			div.horizontal-scroll-item
+			//- 				a.horizontal-scroll-item-link( href=`/products/${ product.brand_slug }/${ product.slug }` )
+			//- 					div.thumbnail-container
+			//- 						img.thumbnail( src=src )
+			//- 					h3.copy #{ product.name }

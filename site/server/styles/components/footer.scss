@@ -1,0 +1,157 @@
+footer {
+	background-color: $darkgrey;
+	color: $white;
+	padding: 2rem 0;
+	width: 100%;
+
+	.nav {
+		margin: 0 0 2rem 0;
+		width: 100%;
+
+		.links {
+			margin: 0 auto;
+			width: 83.33%;
+
+			.link {
+				@include f-subheading();
+				border-bottom: 1px solid $lightgrey;
+				line-height: 2rem;
+				margin: 0 0 1rem 0;
+				width: 100%;
+
+				a {
+					color: $white;
+					display: block;
+					text-decoration: none;
+					width: 100%;
+				}
+				&:last-child {
+					margin: 0 0 0 0;
+				}
+				@media( min-width: $tablet ) {
+					border-left: 1px solid $lightgrey;
+					border-bottom: none;
+					display: inline-block;
+					line-height: 1.25rem;
+					margin: 0 0 0.5rem 0;
+					padding: 0 0.5rem;
+					width: auto;
+
+					&:first-child {
+						border-left: none;
+					}
+				}
+				@media( min-width: $desktop ) {
+					
+				}
+			}
+			@media( min-width: $tablet ) {
+				text-align: center;
+				width: 66.66%;
+			}
+			@media( min-width: $desktop ) {
+				
+			}
+		}
+	}
+	.social {
+		margin: 0 0 2rem 0;
+		text-align: center;
+		width: 100%;
+
+		.caption {
+			@include f-caption();
+		}
+		.logo {
+			background-image: url( "../images/generic/VWheelLogo-White-01.svg" );
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: auto 100%;
+			display: block;
+			height: 3rem;
+			margin: 0.25rem 0;
+			width: 100%;
+		}
+		.networks {
+			width: 100%;
+
+			a {
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: 100% auto;
+				display: inline-block;
+				margin: 0 0 0 0.5rem;
+				height: 3rem;
+				opacity: 1;
+				width: 3rem;
+
+				&.facebook {
+					background-image: url( "../images/generic/Facebook-01.svg" );
+				}
+				&.instagram {
+					background-image: url( "../images/generic/Instagram-01.svg" );
+				}
+				&.youtube {
+					background-image: url( "../images/generic/YouTube-01.svg" );
+				}
+				&:hover {
+					opacity: 0.75;
+				}
+				&:first-child {
+					margin: 0 0 0 0;
+				}
+			}
+		}
+	}
+	.legal {
+		margin: 0 auto;
+		text-align: center;
+		width: 83.33%;
+
+		.copyright {
+			@include f-body-1();
+			line-height: 1.25rem;
+			text-transform: uppercase;
+		}
+		// .links {
+		// 	line-height: 1.25rem;
+		// 	margin: 0.5rem 0 0 0;
+		// 	width: 100%;
+
+		// 	a {
+		// 		color: $white;
+		// 		@include f-body-1();
+		// 	}
+		// }
+	}
+	@media( min-width: $tablet ) {
+
+	}
+	@media( min-width: $desktop ) {
+		.social {
+
+			.caption {
+				@include f-subheading();
+				display: inline-block;
+				line-height: 3rem;
+				vertical-align: middle;
+			}
+			.logo {
+				display: inline-block;
+				margin: 0 1rem;
+				vertical-align: middle;
+				width: 10rem;
+			}
+			.networks {
+				display: inline-block;
+				vertical-align: middle;
+				width: auto;
+
+				a {
+					height: 1.75rem;
+					width: 1.75rem;
+				}
+			}
+		}
+	}
+}

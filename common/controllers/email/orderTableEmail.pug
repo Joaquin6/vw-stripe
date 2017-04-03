@@ -1,0 +1,197 @@
+//- Breaking this up into peices
+mixin shipping(agentCode, methodCode)
+	-	var agent
+	-	agent = (agentCode.toLowerCase()=="ups")? "UPS":agent
+	-	agent = (agentCode.toLowerCase()=="fedex")? "FedEX":agent
+	-	var method
+	-	method = (methodCode.toLowerCase()=="standard")? "(Standard Ground)": method
+	-	method = (methodCode.toLowerCase()=="ltl")? "(LTL)": method
+	-	method = (methodCode.toLowerCase()=="expedited")? "(Expedited)": method
+	p=agent +" "+ method
+mixin dateformat(date)
+	- var d = new Date(date)
+	span=(d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear()
+mixin table()
+	table(cellpadding="0" cellspacing="0")
+		block
+mixin logo()
+	tr
+		td(style="padding: 20px 0; text-align:center")
+			img(width="200px" src="http://visionwheel.s3.amazonaws.com/pages/VisionWheelLogo.svg")
+mixin messaging(message)
+	tr
+		td(style="padding: 20px 40px;border-bottom:thin solid black; border-top:thin solid black;" align='center')
+			h1(style="font-size:24px; margin: 0 0 0px; text-transform:uppercase;")!= message.header
+			p!= message.subheader
+			p(style="font-size:10px;")!= message.aside
+mixin orderHeader(order)
+	tr
+		td(style="padding: 20px 10px;border-bottom:thin solid black;" )
+			.orderDate
+				p.strong(style="font-weight: bold;margin-bottom: 0.5rem;") Order Placed
+				p
+					+dateformat(order.created)
+			.orderTotal(style="margin-top: 20px;")
+				p.strong(style="font-weight: bold;margin-bottom: 0.5rem;") Purchase Order Number:
+				p= order.po_number
+mixin saleItemRow(item, key, index)
+	tr
+		td(style="padding: 20px 0;")
+			+table()
+				tr
+					td(colspan=2, width="300" style="padding: 0 10px;")
+						if item.shipping_options.shipped
+							p.strong(style="font-weight: bold;margin-bottom: 0.5rem;").shipped="Item #"+index+" - SHIPPED"
+						else
+							p.strong(style="font-weight: bold;margin-bottom: 0.5rem;")="Item #"+index
+						.productThumb
+							- var imgsrc = (item.item_description.image) ? item.item_description.image : "https://placehold.it/128x128"
+							img(src=imgsrc, style="max-width:150px;")
+				tr
+					td.col.col1(valign="top" width="300" style="padding: 0 10px;")
+						p.strong(style="font-weight: bold;margin-bottom: 0.5rem;")=item.item_description.product_name
+						p="Part Number: "+item.item_no
+						p="Size: "+ item.item_description.size
+						p="Qty: "+ item.qty
+						p=item.unit_price+" each"
+					td.col(valign="top" width="300" style="padding: 0 10px;")
+						.shippingStatus
+							p.strong(style="font-weight: bold;margin-bottom: 0.5rem;") Shipping From
+							p= item.fulfilment_location.name
+							p= item.fulfilment_location.address
+							p= item.fulfilment_location.city+", "+item.fulfilment_location.state+" "+item.fulfilment_location.postal
+						.shippingMethod(style="padding: 10px 0 0")
+							p.strong(style="font-weight: bold;margin-bottom: 0.5rem;") Shipping Method
+							if (item.shipping_options.shipping_method=="pickup")
+								p Vision Wheel - Pickup
+								p.small Please call the #{ item.fulfilment_location.name } to schedule your pick up.
+							else
+								+shipping(item.shipping_options.shipping_agent, item.shipping_options.shipping_method)
+								- var thrdParty = item.shipping_options.third_party_account_number
+								if (thrdParty && thrdParty.length>0)
+									p="Account Number: "+thrdParty
+						if item.shipping_options.shipped
+							- var trackingNo = item.shipping_options.tracking_number
+							- var ups = ""+trackingNo
+							- var fedex = ""+trackingNo
+							- var trackingLink = item.shipping_options.shipping_agent.toLowerCase()=='ups'?ups:fedex
+							if trackingLink
+								.shipped
+									p.strong(style="font-weight: bold;margin-bottom: 0.5rem;") Track this order:
+								a(href=trackingLink, target="_blank")= trackingNo
+
+mixin shippingTo(order)
+	tr
+		td(style="padding: 20px 10px;border-bottom:thin solid black;border-top:thin solid black;" )
+			.orderShippingInfo
+				p.strong(style="font-weight: bold;margin-bottom: 0.5rem;") Shipping To:
+				p= order.customer_billing_info.customer_name
+				p= order.customer_billing_info.company_name
+				p= order.ship_to_info.address_1
+				p= order.ship_to_info.address_2
+				p= order.ship_to_info.city+", "+order.ship_to_info.state+" "+order.ship_to_info.zip
+mixin paymentCharges(order)
+	tr
+		td(style="padding: 20px 0;")
+			+table
+				tr
+					td.col.col1(valign="top" width="300" style="padding: 0 10px;")
+						.paymentDetails(style="padding:0 0 20px")
+							p(style="font-weight: bold; margin-bottom: 0.5rem;color: #999999;text-decoration: underline;") Payment Details
+							p.strong(style="font-weight: bold;margin-bottom: 0.5rem;") Payment Method:
+							if order.payment.payment_method=='CHARGE'
+								p Charge to Account:
+									span= order.customer_id
+							else if order.payment.payment_method.indexOf('CREDIT')>=0
+								p Credit Card:
+									span= order.payment.CCInfo
+
+						.charges
+							if order.payment.paid
+								p(style="font-weight: bold; margin-bottom: 0.5rem;color: red;text-decoration: underline;") Paid
+							else
+								p(style="font-weight: bold; margin-bottom: 0.5rem;color: #999999;text-decoration: underline;") Charges
+							p.strong(style="font-weight: bold;margin-bottom: 0.5rem;") Subtotal:
+							p= order.subtotal_amount
+							p.strong(style="font-weight: bold;margin-bottom: 0.5rem;") Shipping:
+							p= order.freight_total
+							p.strong(style="font-weight: bold;margin-bottom: 0.5rem;") Tax:
+							p= order.tax_amount
+							p.strong(style="font-weight: bold;margin-bottom: 0.5rem;") Total:
+							p= order.total_invoice_amount
+
+					td.col(valign="top" width="300" style="padding: 0 10px;")
+						if (order.payment.payable && !order.payment.paid)
+							.makePayment(style="padding:0 0 20px")
+								p Your bill is ready and can be paid here.
+								a.redButton(href="" style="background-color:red;padding:20px;text-align:center;display:block;text-decoration:none;")
+									span(style="color:white;") Pay Purchase Order
+
+mixin footer
+	tr
+		td(style="padding: 20px 40px;font-size:12px;background-color:black;color:white;" align="center" )
+			.group
+				p
+					sup ©
+					span 2017 Vision Wheel, Inc.
+				p All Rights Reserved.
+				p Vision Wheel Inc. 3512-B 6th Avenue
+				p Decatur, Alabama 35603 USA.
+			.group(style="margin-top:20px;")
+				p Please do not reply to this email. If you need to contact Vision Wheel with questions or concerns, please call Toll Free: 1-800-633-3936 / 1-800-542-3998
+
+
+
+
+//- This will allow the two column to be mobile responsive... in theory. Never got these things to actually work.
+style.
+	table {
+		font-family: sans-serif;
+		font-size: 16px;
+	}
+	/* 2 equal-width columns Layout Pattern CSS */
+	@media only screen and (max-width: 599px) {
+		td[class="pattern"] table { width: 100%; }
+		td[class="pattern"] img {
+			width: 100%;
+			height: auto !important;
+		}
+		td[class="pattern"] .col{
+			width: 50%;
+		}
+	}
+	@media only screen and (max-width: 450px) {
+		td[class="pattern"] .col{
+			width: 100%;
+			display: block;
+		}
+		td[class="pattern"] .col1{
+			margin-bottom: 16px;
+		}
+		td[class="pattern"] .description span {
+			display: block;
+			max-width: 300px;
+		}
+	}
+	p {
+		margin: 0 0 3px;
+	}
+	p.strong {
+	    font-weight: bold;margin-bottom: 0.5rem;
+	}
+//- Here is the genneral structure of the email
++table()
+	tr
+		td(class="pattern" width="600" align="center")
+			+table()
+				+logo
+				if message
+					+messaging(message)
+				+orderHeader(order)
+				- var index = 0
+				each item, key in order.sale_items
+					- index++
+					+saleItemRow(item, key, index)
+				+shippingTo(order)
+				+paymentCharges(order)
+				+footer

@@ -1,0 +1,328 @@
+.shipping {
+	margin: 0 auto;
+	max-width: $mw-large;
+	padding: 0 1rem;
+	width: 100%;
+
+	.fields {
+		margin: 0 0 3rem 0;
+		width: 100%;
+
+		.title {
+			@include f-title();
+			margin: 0 0 1rem 0;
+			text-transform: uppercase;
+			width: 100%;
+		}
+		.fieldset {
+			margin: 0 0 1rem 0;
+			width: 100%;
+
+			.field {
+				@include f-input();
+				width: 100%;
+
+				&.error {
+					border: 2px solid $red;
+				}
+			}
+			.caption {
+				@include f-caption();
+				margin: 0.25rem 0 0 0;
+				width: 100%;
+			}
+			&:last-child {
+				margin: 0 0 0 0;
+			}
+		}
+	}
+	.warehouses {
+		width: 100%;
+
+		.warehouse {
+			margin: 3rem 0 0 0;
+			width: 100%;
+
+			.warehouse-details {
+				width: 100%;
+
+				.list {
+					margin: 1rem 0;
+					width: 100%;
+
+					.key {
+						@include f-title();
+						margin: 0 0 0.25rem 0;
+						text-transform: uppercase;
+						width: 100%;
+					}
+					.items {
+						width: 100%;
+
+						.item {
+							margin: 1rem 0 0 0;
+							width: 100%;
+
+							.specification {
+								@include f-body-1();
+								margin: 0.5rem 0 0 0;
+
+								&.model {
+									@include f-body-2();
+									text-transform: uppercase;
+								}
+								&:first-child {
+									margin: 0 0 0 0;
+								}
+							}
+							&:first-child {
+								margin: 0 0 0 0;
+							}
+						}
+					}
+				}
+				.location {
+					width: 100%;
+
+					.key {
+						@include f-title();
+						margin: 0 0 0.25rem 0;
+						text-transform: uppercase;
+						width: 100%;
+					}
+					.label {
+						width: 100%;
+					}
+					.address {
+						margin: 1rem 0 0 0;
+						width: 100%;
+
+						.street {
+							margin: 0 0 0.25rem 0;
+							width: 100%;
+						}
+					}
+				}	
+			}
+			.delivery {
+				width: 100%;
+
+				.title {
+					@include f-title();
+					margin: 0 0 1rem 0;
+					text-transform: uppercase;
+					width: 100%;
+				}
+				.methods {
+					width: 100%;
+
+					.method {
+						margin: 1rem 0 0 0;
+						width: 100%;
+
+						.label {
+							@include f-body-2();
+							background-color: $lightgrey;
+							border: none;
+							border-radius: 0;
+							color: $darkgrey;
+							outline: none;
+							margin: 1rem 0 0 0;
+							opacity: 0.5;
+							padding: 1rem 1rem 1rem 3rem;
+							position: relative;
+							text-align: left;
+							width: 100%;
+
+							&:before {
+								background-image: url( "../images/checkout/checkmark-darkgrey.png" );
+								background-position: center center;
+								background-repeat: no-repeat;
+								background-size: auto 1rem;
+								content: "";
+								display: block;
+								height: 3rem;
+								position: absolute;
+								top: 50%; left: 0;
+								@include transform( translate3d( 0, -50%, 0 ) );
+								width: 3rem;
+							}
+							&:first-child {
+								margin: 0 0 0 0;
+							}
+							&:hover {
+								opacity: 1;
+							}
+						}
+						&:first-child {
+							margin: 0 0 0 0;
+						}
+						&.expedited, &.ltl, &.pickup {
+
+							.label {
+								@include caret( "red" );
+								overflow: hidden;
+
+								&:after {
+									float: right;
+									height: 0.875rem;
+								}
+							}
+							.disclaimer {
+								display: none;
+								margin: 0.5rem 0 0 0;
+								width: 100%;
+
+								.caption {
+									@include f-caption();
+									width: 100%;
+
+									.key {
+										font-weight: $fw-medium;
+									}
+								}
+								.checkbox {
+									@include checkbox();
+									display: table;
+									height: 1.75rem;
+									margin: 0.5rem 0 0 0;
+									width: 100%;
+
+									label {
+										color: $grey;
+										display: table-cell;
+										padding: 0 0 0 2rem;
+										vertical-align: middle;
+
+										&:before {
+											height: 1.5rem;
+											width: 1.5rem;
+										}
+									}
+									input:checked + label {
+
+										&:after {
+											height: 1.75rem;
+											top: -0.25rem; left: 0.125rem;
+											width: 2rem;
+										}
+									}
+								}
+								.radios {
+									margin: 1rem 0 0 0;
+									width: 100%;
+
+									.radio {
+										@include radio();
+										display: table;
+										height: 1.75rem;
+										margin: 0.5rem 0 0 0;
+										width: 100%;
+
+										label {
+											color: $grey;
+											display: table-cell;
+											padding: 0 0 0 2rem;
+											vertical-align: middle;
+
+											&:before {
+												border-radius: 100%;
+												height: 1.5rem;
+												width: 1.5rem;
+											}
+										}
+										input:checked + label {
+
+											&:after {
+												height: 1rem;
+												top: 0.375rem; left: 0.375rem;
+												width: 1rem;
+											}
+										}
+									}
+									&.disabled {
+										opacity: 0.5;
+									}
+								}
+							}
+							&.toggle {
+
+								.disclaimer {
+									display: block;
+								}
+							}
+						}
+						&.toggle {
+
+							.label {
+								opacity: 1;
+
+								&:after {
+                	@include transform( rotate( 90deg ) );
+								}
+							}
+						}
+					}
+				}
+			}	
+			&.has-selected {
+
+				.delivery {
+
+					.methods {
+
+						.method {
+
+							&.selected {
+
+								.label {
+									color: $red;
+									opacity: 1;
+
+									&:before {
+										background-image: url( "../images/checkout/checkmark-red.png" );
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			&.error {
+				border: 2px solid $red;
+			}
+			&:first-child {
+				margin: 0 0 0 0;
+			}
+			@media( min-width: $tablet ) {
+
+			}
+			@media( min-width: $desktop ) {
+				overflow: hidden;
+
+				.warehouse-details {
+					float: left;
+					padding: 0 0.5rem 0 0;
+					width: 50%;
+				}
+				.delivery {
+					float: left;
+					padding: 0 0 0 0.5rem;
+					width: 50%;
+				}
+			}
+		}
+	}
+	.button {
+		@include f-button();
+		margin: 3rem 0 0 0;
+		width: 100%;
+
+		@media( min-width: $tablet ) {
+
+		}
+		@media( min-width: $desktop ) {
+			width: 33.33%;
+		}
+	}
+}

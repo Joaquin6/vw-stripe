@@ -1,0 +1,26 @@
+extends ../templates/layout
+
+block styles
+	link( href="/css/account.css" rel="stylesheet" type="text/css" )
+block scripts
+	script( src="/js/account.js" )
+block main
+	#contentContainer
+		.header
+			h1 Welcome to your Vision Wheel Dealer"s Account
+		p.aside From Here You Can:
+		ul.accountOptions
+			li.manageProfile
+				a( href="/account/profile" ) Manage Your Profile / Change Password
+			li.orderHistory
+				a(href="/account/orders") View Order History
+			li.payPurchaseOrder
+				a( href="/account/pay-purchase-order" ) Pay Purchase Order
+			//- li.missingItems
+			//- 	a( href="/account" ) Submit RMA/Missing Items
+			li.credit
+				a( target="_blank", href="http://images.visionwheel.com/images/categories/highres/VW%20Company%20Credit%20App%20-%20full.pdf" ) View Dealer Credit Application
+			li.quickCredit
+				a( target="_blank", href="http://images.visionwheel.com/images/categories/highres/VW%20QUICK%20CREDIT%20APP.pdf" ) View Dealer Quick Credit Application
+			//- li.downloads
+			//- 	a( href="/account" ) Download Vision Wheel Graphics

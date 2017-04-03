@@ -1,0 +1,126 @@
+extends ./templates/layout
+
+block main
+	div#search
+		if !results
+			h1.headline Search By Specifications
+			span.underline
+			if error
+				p #{ error }
+			div.forms
+				ul.form-types
+					li.wheel.type Wheels
+					li.tire.type Tires
+					li.accessory.type Accessories
+				span.cta Select By Any Field
+				div.list
+					//- p #{ JSON.stringify( filters ) }
+					each items, type in filters
+						form( class=type method="GET" action="/search" )
+							input.type( name="type" type="string" value=type, readonly )
+							div.fields
+									each item, itemKey in items
+										//- p #{ itemKey }
+										//- p #{ JSON.stringify( item ) }
+										if item.values
+											//- p has values
+											div.field
+												select( name=itemKey )
+													option( value="" selected disabled ) #{ item.label }
+													each value in item.values
+														option( value=value ) #{ value }
+							div.buttons
+								button.submit( type="submit" ) Search
+								button.reset Reset
+		else
+			h1.headline Search Results
+			span.underline
+			div.results
+				if results.length
+					- var products = {}
+					each item in results
+						- var key = item.specification.model
+						if key
+							if !products[key]
+								- 
+									products[key] = {
+										image: item.image.list[0] || "https://placehold.it/160x160",
+										items: [],
+										type: item.type
+									}
+							- products[key].items.push( item )
+					div.list
+						each product, key in products
+							div.product
+								img.thumbnail( src=product.image )
+								h2.subheading #{ key }
+								div.table
+									div.content
+										div.rows
+											div.row.columns
+												case product.type
+													when "accessory"
+														span.column.large.part-number Item No.
+														span.column.medium Size
+														span.column.large Description
+														span.column.medium Finish
+														span.column.large Additional Info
+														span.column.large Product Type
+													when "tire"
+														span.column.large.part-number Item No.
+														span.column.medium Size
+														span.column.medium Search Size
+														span.column.large Description
+														span.column.small Pattern
+														span.column.small Ply
+														span.column.large Additional Info
+														span.column.large Product Type
+													when "wheel"
+														span.column.large.part-number Item No.
+														span.column.small Diameter
+														span.column.small Width
+														span.column.medium Bolt Pattern 1
+														span.column.medium Bolt Pattern 2
+														span.column.small Backspace
+														span.column.small Offset
+														span.column.large Cap / Bore / Load
+														span.column.medium Finish
+														span.column.large Additional Info
+														span.column.large Product Type
+											each item in product.items
+												a.row( href=`products/${ item.specification.brand_slug }/${ item.specification.product_slug }/${ item.part_number }` )
+													case item.type
+														when "accessory"
+															span.column.large.part-number #{ item.part_number }
+															span.column.medium #{ item.specification.size }
+															span.column.large #{ item.specification.description }
+															span.column.medium #{ item.specification.finish }
+															span.column.large #{ item.specification.additional_info }
+															span.column.large #{ item.specification.product_type }
+														when "tire"
+															span.column.large.part-number #{ item.part_number }
+															span.column.medium #{ item.specification.size }
+															span.column.medium #{ item.specification.search_description }
+															span.column.large #{ item.specification.description }
+															span.column.small #{ item.specification.model }
+															span.column.small #{ item.specification.ply }
+															span.column.large #{ item.specification.additional_info }
+															span.column.large #{ item.specification.product_type }
+														when "wheel"
+															span.column.large.part-number #{ item.part_number }
+															span.column.small #{ item.specification.diameter }
+															span.column.small #{ item.specification.width }
+															span.column.medium #{ item.specification.boltpattern1 }
+															span.column.medium #{ item.specification.boltpattern2 }
+															span.column.small #{ item.specification.backspace }
+															span.column.small #{ item.specification.offset }
+															span.column.large #{ item.specification.cap_bore_load }
+															span.column.medium #{ item.specification.finish }
+															span.column.large #{ item.specification.additional_info }
+															span.column.large #{ item.specification.product_type }
+									div.caption
+										span Scroll to see full specifications
+										span.mobile-only , or for better quality, please view on a larger monitor
+										span .
+				else
+					h2 No results.

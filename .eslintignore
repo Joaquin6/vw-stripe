@@ -1,0 +1,9 @@
+# /node_modules and /bower_components ignored by default
+node_modules/**
+bower_components/**
+
+# Ignore paths
+/coverage/**
+/release/**
+/_globals/**
+/.sass-cache/**

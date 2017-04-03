@@ -1,0 +1,181 @@
+.details {
+	margin: 0 auto;
+	max-width: $mw-large;
+	padding: 0 1rem;
+	width: 100%;
+
+	.list {
+		width: 100%;
+
+		.items {
+			margin: 3rem 0 0 0;
+			width: 100%;
+
+			.item {
+				margin: 3rem 0 0 0;
+				width: 100%;
+
+				.thumbnail {
+					display: block;
+					margin: 0 0 1rem 0;
+					width: 33.33%;
+				}
+				.item-details {
+					width: 100%;
+
+					.label {
+						position: relative;
+						width: 100%;
+
+						.title {
+							@include f-title();
+							padding: 0 4rem 0 0;
+							text-transform: uppercase;
+						}
+						.delete {
+							@include f-caption();
+							cursor: pointer;
+							display: block;
+							position: absolute;
+							top: 0; right: 0;
+							text-align: right;
+							text-transform: uppercase;
+							width: 4rem;
+						}
+					}
+					.specifications {
+						margin: 1rem 0;
+						width: 100%;
+
+						.specification {
+							@include f-body-1();
+							margin: 0.5rem 0 0 0;
+							width: 100%;
+
+							&.part-number {
+								@include f-body-2();
+							}
+							&:first-child {
+								margin: 0 0 0 0;
+							}
+						}
+					}
+					.location {
+						width: 100%;
+
+						.key {
+							@include f-body-2();
+							margin: 0 0 0.25rem 0;
+							width: 100%;
+						}
+						.label {
+							@include f-body-1();
+							width: 100%;
+						}
+						.address {
+							margin: 1rem 0;
+							width: 100%;
+
+							.street {
+								margin: 0 0 0.25rem 0;
+								width: 100%;
+							}
+						}
+					}
+				}
+				&:first-child {
+					margin: 0 0 0 0;
+				}
+				@media( min-width: $tablet ) {
+
+				}
+				@media( min-width: $desktop ) {
+					overflow: hidden;
+
+					.thumbnail {
+						float: left;
+						margin: 0 0 0 0;
+						width: 16.66%;
+					}
+					.item-details {
+						float: left;
+						padding: 0 0 0 1rem;
+						width: 83.33%;
+
+						.specifications {
+							float: left;
+							margin: 1rem 0 0 0;
+							padding: 0 0.5rem 0 0;
+							width: 50%;
+						}
+						.location {
+							float: left;
+							margin: 1rem 0 0 0;
+							padding: 0 0 0 0.5rem;
+							width: 50%;
+						}
+					}
+				}
+			}
+			&:first-child {
+				margin: 0 0 0 0;
+			}
+		}
+	}
+	.underline {
+		@include underline();
+		margin: 3rem 0;
+	}
+	.subtotal {
+		@include f-title();
+		overflow: hidden;
+		padding: 0.25rem 0;
+		width: 100%;
+
+		.key {
+			float: left;
+			text-transform: uppercase;
+		}
+		.value {
+			float: right;
+		}
+		@media( min-width: $tablet ) {
+
+		}
+		@media( min-width: $desktop ) {
+			width: 50%;
+		}
+	}
+	.pending-disclaimer {
+		width: 100%;
+
+		.message {
+			@include f-body-1();
+			color: $grey;
+			width: 100%;
+
+			.label {
+				@include f-body-2();
+				color: $red;
+			}
+		}
+		@media( min-width: $tablet ) {
+
+		}
+		@media( min-width: $desktop ) {
+			width: 50%;
+		}
+	}
+	.button {
+		@include f-button();
+		margin: 3rem 0 0 0;
+		width: 100%;
+
+		@media( min-width: $tablet ) {
+
+		}
+		@media( min-width: $desktop ) {
+			width: 33.33%;
+		}
+	}
+}

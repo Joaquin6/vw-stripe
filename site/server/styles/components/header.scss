@@ -1,0 +1,219 @@
+header.primary {
+	border-bottom: 1px solid $lightgrey;
+	position: fixed;
+	top: 0; left: 0;
+	width: 100%;
+	z-index: 2;
+
+	.user-bar {
+		background-color: $darkgrey;
+		border-bottom: 1px solid $white;
+		height: 2rem;
+		overflow: hidden;
+		padding: 0.5rem 1rem;
+		position: relative;
+		width: 100%;
+		z-index: 1;
+
+		.user-menu {
+			color: $white;
+			display: table;
+			float: right;
+			font-size: 0.875rem;
+
+			.user-info {
+				color:$white;
+				display: table-cell;
+				padding: 0 1rem 0 0;
+				text-decoration: none;
+
+				.user-icon {
+					background-image: url( "../images/generic/UserIcon-01-01.svg" );
+					background-position: center center;
+					background-repeat: no-repeat;
+					background-size: 100% auto;
+					display: table-cell;
+					height: 1rem;
+					vertical-align: middle;
+					width: 1rem;
+				}
+				.username {
+					display: table-cell;
+					padding: 0 0 0 0.25rem;
+					vertical-align: middle;
+				}
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+			.logout {
+				color: $white;
+				display: table-cell;
+				text-decoration: none;
+				vertical-align: middle;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	.menu {
+		background-color: $white;
+		height: 5rem;
+		padding: 1rem;
+		width: 100%;
+
+		.list {
+			display: table;
+			overflow: hidden;
+			width: 100%;
+
+			.item {
+				display: table-cell;
+				vertical-align: middle;
+				width: 16.66%;
+
+				a, span {
+					background-position: center center;
+					background-repeat: no-repeat;
+					background-size: contain;
+					display: block;
+					margin: 0 auto;
+					opacity: 0.75;
+					outline: none;
+
+					&:hover {
+						opacity: 1;
+					}
+				}
+				.toggle-nav {
+					background-image: url( "../images/generic/Hamburger_Gray-01.svg" );
+					cursor: pointer;
+					height: 1.5rem;
+					position: relative;
+					width: 1.5rem;
+					z-index: 1;
+
+					&.active {
+						background-image: url( "../images/generic/Hamburger_White-01.svg" );
+					}
+					@media( min-width: $tablet ) {
+
+					}
+					@media( min-width: $desktop ) {
+
+						&:after {
+							color: $darkgrey;
+							content: "Menu";
+							line-height: 1.5rem;
+							padding: 0 0 0 0.5rem;
+							position: absolute;
+							top: 0; left: 100%;
+						}
+						&.active {
+
+							&:after {
+								display: none;
+							}
+						}
+					}
+				}
+				.toggle-search {
+					background-image: url( "../images/generic/SearchIcon-Gray-01.svg" );
+					cursor: pointer;
+					height: 1.5rem;
+					position: relative;
+					width: 1.5rem;
+
+					@media( min-width: $tablet ) {
+
+					}
+					@media( min-width: $desktop ) {
+
+						&:after {
+							color: $darkgrey;
+							content: "Search By Specifications";
+							line-height: 0.75rem;
+							padding: 0 0 0 0.5rem;
+							position: absolute;
+							top: 0; left: 100%;
+						}
+						&.active {
+
+							&:after {
+								display: none;
+							}
+						}
+					}
+				}
+				&.vision-wheel {
+					cursor: pointer;
+					width: 33.33%;
+
+					.logo {
+						background-image: url( "../images/generic/VWheelLogo-Gray-01.svg" );
+						height: 3rem;
+						opacity: 1;
+					}
+				}
+				.toggle-locations {
+					background-image: url( "../images/generic/LocationGray.svg" );
+					cursor: pointer;
+					height: 1.5rem;
+					position: relative;
+					width: 1.5rem;
+
+					@media( min-width: $tablet ) {
+
+					}
+					@media( min-width: $desktop ) {
+
+						&:after {
+							color: $darkgrey;
+							content: "Locations";
+							line-height: 1.5rem;
+							padding: 0 0 0 0.5rem;
+							position: absolute;
+							top: 0; left: 100%;
+						}
+						&.active {
+
+							&:after {
+								display: none;
+							}
+						}
+					}
+				}
+				.toggle-cart {
+					background-image: url( "../images/generic/CartIcon-01.svg" );
+					cursor: pointer;
+					height: 1.5rem;
+					position: relative;
+					width: 1.5rem;
+
+					@media( min-width: $tablet ) {
+
+					}
+					@media( min-width: $desktop ) {
+
+						&:after {
+							color: $darkgrey;
+							content: "Checkout";
+							line-height: 1.5rem;
+							padding: 0 0 0 0.5rem;
+							position: absolute;
+							top: 0; left: 100%;
+						}
+						&.active {
+
+							&:after {
+								display: none;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

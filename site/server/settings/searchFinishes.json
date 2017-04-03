@@ -1,0 +1,54 @@
+{
+  "Chrome": [
+    "Chrome"
+  ],
+  "Painted": [
+    "Anthracite",
+    "Anthracite with Satin Black Lip",
+    "Gloss Black",
+    "Graphite",
+    "Gunmetal",
+    "Hyper Silver",
+    "Matte Black",
+    "Matte Black w\\Anthracite Spoke Ends",
+    "Phantom Black",
+    "Satin Black",
+    "Silver",
+    "White"
+  ],
+  "Painted / Machined": [
+    "Anthracite Machined Face",
+    "As-Cast Machined Face Machined Ring",
+    "Gloss Black Ball Cut Machined with Blue Tint",
+    "Gloss Black Ball Cut Machined with Green Tint",
+    "Gloss Black Ball Cut Machined with Red Tint",
+    "Gloss Black Machined Face",
+    "Gloss Black Machined Face and Lip",
+    "Gloss Black Machined Lip",
+    "Gloss Black Machined Lip Milled Spoke",
+    "Gloss Black Milled Lip",
+    "Gloss Black Milled Spoke",
+    "Gloss Black Mirror Machined Face",
+    "Gloss Black Mirror Machined Face and Lip",
+    "Gloss Black Mirror Machined Face with Gloss Black Lip",
+    "Gloss Black with Milled Center",
+    "Gloss Black with Milled Windows",
+    "Gold Mirror Machined Face",
+    "Graphite Mirror Machined Face",
+    "Gunmetal Machined Face",
+    "Gunmetal Machined Face and Ring",
+    "Gunmetal Machined Lip",
+    "Machined",
+    "Matte Black Anthracite Lip",
+    "Matte Black Machined Face",
+    "Matte Black Machined Lip",
+    "Silver Machined Face",
+    "Silver Machined Lip"
+  ],
+  "Polished": [
+    "Polished"
+  ],
+  "Unfinished": [
+    "Unfinished"
+  ]
+}

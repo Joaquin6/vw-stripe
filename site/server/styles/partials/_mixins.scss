@@ -1,0 +1,911 @@
+@mixin animation( $properties ) {
+  -moz-animation:    $properties;
+  -ms-animation:     $properties;
+  -o-animation:      $properties;
+  -webkit-animation: $properties;
+  animation:         $properties;
+}
+@mixin caret( $color ) {
+
+  &:after {
+    background-image: url( "../images/generic/caret-" + $color + ".png" );
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    color: $red;
+    content: "";
+    display: inline-block;
+    height: 0.5rem;
+    // margin: 0 0 0 0.5rem;
+    vertical-align: middle;
+    width: 0.5rem;
+  }
+}
+@mixin checkbox() {
+
+  input {
+    display: none;
+  }
+  label {
+    @include f-caption();
+    display: block;
+    position: relative;
+    width: 100%;
+
+    &:before {
+      border: 2px solid $lightgrey;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0; left: 0;
+    }
+  }
+  input:checked + label {
+
+    // &:before {
+    //   border: 2px solid $red;
+    // }
+    &:after {
+      background-image: url( "../images/generic/checkmark-red.png" );
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0; left: 0;
+    }
+  }
+  &:first-child {
+    margin: 0 0 0 0;
+  }
+}
+@mixin f-headline() {
+  font-family:      $ff-headline;
+  font-size:        $fs-headline;
+  line-height:      $lh-headline;
+}
+@mixin f-title() {
+  font-family:      $ff-title;
+  font-size:        $fs-title;
+  line-height:      $lh-title;
+}
+@mixin f-subheading() {
+  font-family:      $ff-subheading;
+  font-size:        $fs-subheading;
+  line-height:      $lh-subheading;
+}
+@mixin f-body-2() {
+  font-family:      $ff-body;
+  font-size:        $fs-body;
+  font-weight:      $fw-medium;
+  line-height:      $lh-body;
+}
+@mixin f-body-1() {
+  font-family:      $ff-body;
+  font-size:        $fs-body;
+  font-weight:      $fw-normal;
+  line-height:      $lh-body;
+}
+@mixin f-caption() {
+  font-family:      $ff-caption;
+  font-size:        $fs-caption;
+  line-height:      $lh-caption;
+}
+@mixin f-input() {
+  background-color: $lightgrey;
+  border:           none;
+  color:            $grey;
+  display:          block;
+  font-family:      $ff-input;
+  font-size:        $fs-input;
+  height:           2.625rem;
+  line-height:      $lh-input;
+  outline:          none;
+  padding:          0 1rem;
+}
+@mixin f-button() {
+  background-color: transparent;
+  border:           2px solid $red;
+  cursor:           pointer;
+  display:          block;
+  font-family:      $ff-button;
+  font-size:        $fs-button;
+  height:           2.625rem;
+  line-height:      2.375rem;
+  outline:          none;
+  padding:          0 1rem;
+  text-align:       center;
+  text-decoration:  none;
+  text-transform:   uppercase;
+
+  &:hover {
+    text-decoration: underline;
+  }
+  &.disabled {
+    cursor: default;
+    opacity: 0.5;
+    text-decoration: none;
+  }
+}
+@mixin filter() {
+  margin: 0 auto;
+  max-width: $tablet;
+  width: 100%;
+
+  .item-filter-wrapper {
+    width: 100%;
+
+    .item-filter-toggle {
+      position: relative;
+      width: 100%;
+
+      .copy {
+        @include f-body-1();
+        background-color: $darkgrey;
+        color: $white;
+        cursor: pointer;
+        display: block;
+        height: 2.75rem;
+        line-height: 2.75rem;
+        position: relative;
+        text-align: center;
+        text-transform: uppercase;
+        width: 100%;
+        z-index: 1;
+
+      }
+      &:hover {
+
+        .copy {
+          background-color: $black;
+        }
+      }
+    }
+    .item-filter {
+      display: none;
+    }
+    &.toggle {
+
+      .item-filter-toggle {
+        @include caret( "darkgrey" );
+        margin: 0 0 1rem 0;
+
+        &:after {
+          display: block;
+          height: 0.875rem;
+          position: absolute;
+          top: 100%; left: 50%;
+          @include transform( translate3d( -50%, -0.25rem, 0 ) rotate( 90deg ) );
+          width: 0.875rem;
+        }
+        &:hover {
+          @include caret( "black" );
+
+          &:after {
+            display: block;
+            height: 0.875rem;
+            width: 0.875rem;
+          }
+        }
+      }
+      .item-filter {
+        display: block;
+      }
+    }
+  }
+  .item-filter {
+    width: 100%;
+
+    .item-filter-types {
+      overflow: hidden;
+      padding: 0 0 1rem 0;
+      width: 100%;
+
+      .item-filter-type {
+        border-left: 2px solid $white;
+        float: left;
+        position: relative;
+        width: 33.33%;
+
+        .copy {
+          @include caret( "red" );
+          @include f-body-1();
+          background-color: $darkgrey;
+          color: $white;
+          cursor: pointer;
+          display: block;
+          height: 2.75rem;
+          line-height: 2.75rem;
+          text-align: center;
+          text-transform: uppercase;
+          width: 100%;
+          z-index: 1;
+
+          &:after {
+            margin: 0 0 0 0.5rem;
+          }
+        }
+        &:first-child {
+          border-left: none;
+        }
+        &:hover {
+
+          .copy {
+            background-color: $black;
+          }
+        }
+      }
+      &.has-selected {
+
+        .item-filter-type {
+
+          .copy {
+            @include caret( "grey" );
+            background-color: $lightgrey;
+            color: $grey;
+          }
+          &:hover {
+
+            .copy {
+              @include caret( "red" );
+              background-color: $black;
+              color: $white;
+            }
+          }
+          &.selected {
+            @include caret( "darkgrey" );
+
+            .copy {
+              @include caret( "red" );
+              background-color: $darkgrey;
+              color: $white;
+
+              &:after {
+                @include transform( rotate( 90deg ) );
+              }
+            }
+            &:after {
+              display: block;
+              height: 0.875rem;
+              position: absolute;
+              top: 100%; left: 50%;
+              @include transform( translate3d( -50%, -0.25rem, 0 ) rotate( 90deg ) );
+              width: 0.875rem;
+            }
+            &:hover {
+              @include caret( "black" );
+
+              .copy {
+                background-color: $black;
+              }
+              &:after {
+                display: block;
+                height: 0.875rem;
+                width: 0.875rem;
+              }
+            }
+          }
+        }
+      }
+    }
+    .item-filter-forms {
+      float: left;
+      margin: 0 0 1rem 0;
+      width: 100%;
+
+      .item-filter-form {
+        width: 100%;
+
+        .item-filter-type-field {
+          display: none;
+        }
+        .item-filter-fields {
+          width: 100%;
+
+          .item-filter-field {
+            border-left: 2px solid $white;
+            border-top: 2px solid $white;
+            cursor: pointer;
+            float: left;
+            position: relative;
+            width: 50%;
+
+            select {
+              display: none;
+            }
+            .ui-selectmenu-button {
+              display: block;
+              width: 100%;
+
+              .ui-selectmenu-text {
+                @include caret( "red" );
+                @include f-body-1();
+                background-color: $darkgrey;
+                color: $white;
+                height: 2.75rem;
+                line-height: 2.75rem;
+                margin: 0 0 0 0;
+                padding: 0 1rem;
+                text-align: center;
+                text-transform: uppercase;
+                width: 100%;
+
+                &:after {
+                  margin: 0 0 0 0.5rem;
+                }
+                &:hover {
+                  background-color: $black;
+                }
+              }
+              &.ui-selectmenu-button-open {
+
+                .ui-selectmenu-text {
+                  background-color: $black;
+
+                  &:after {
+                    @include transform( rotate( 90deg ) );
+                  }
+                }
+              }
+            }
+            .ui-selectmenu-menu {
+              background-color: $darkgrey;
+              max-height: 16rem;
+              overflow: auto;
+              width: 100%;
+              z-index: 1;
+
+              .ui-menu {
+                width: 100% !important;
+
+                .ui-menu-item {
+                  width: 100%;
+
+                  .ui-menu-item-wrapper {
+                    width: 100%;
+
+                    .copy {
+                      @include f-body-1();
+                      color: $white;
+                      display: block;
+                      padding: 1rem;
+                      text-align: center;
+                      text-transform: uppercase;
+                      width: 100%;
+
+                      &:hover {
+                        background-color: $black;
+                      }
+                    }
+                  }
+                  &.ui-state-disabled {
+                    display: none;
+                  }
+                }
+              }
+            }
+            &:first-child {
+              border-top: none;
+            }
+            &:nth-child( 2 ) {
+              border-top: none;
+            }
+            &:nth-child( 2n + 1 ) {
+              border-left: none;
+            }
+          }
+        }
+        .item-filter-submit {
+          border-left: 2px solid $white;
+          border-top: 2px solid $white;
+          float: left;
+          width: 50%;
+
+          button {
+            @include caret( "white" );
+            @include f-body-1();
+            background-color: $red;
+            color: $white;
+            border: none;
+            cursor: pointer;
+            height: 2.75rem;
+            outline: none;
+            padding: 0 1rem;
+            text-align: center;
+            text-transform: uppercase;
+            width: 100%;
+
+            &:after {
+              margin: 0 0 0 0.5rem;
+            }
+            &.disabled {
+              @include caret( "grey" );
+              background-color: $lightgrey;
+              color: $grey;
+              cursor: default;
+              opacity: 1;
+            }
+          }
+        }
+        &.hidden {
+          display: none;
+        }
+        &.has-selected {
+
+          .item-filter-fields {
+
+            .item-filter-field {
+
+              .ui-selectmenu-button {
+
+                .ui-selectmenu-text {
+                  background-color: $lightgrey;
+                  color: $grey;
+
+                  &:hover {
+                    background-color: $black;
+                    color: $white;
+                  }
+                }
+                &.ui-selectmenu-button-open {
+
+                  .ui-selectmenu-text {
+                    background-color: $black;
+                    color: $white;
+
+                    &:after {
+                      @include transform( rotate( 90deg ) );
+                    }
+                  }
+                }
+              }
+              &.selected {
+
+                .ui-selectmenu-button {
+
+                  .ui-selectmenu-text {
+                    background-color: $darkgrey;
+                    color: $white;
+
+                    &:hover {
+                      background-color: $black;
+                    }
+                  }
+                  &.ui-selectmenu-button-open {
+
+                    .ui-selectmenu-text {
+
+                      &:after {
+
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      &.hidden {
+        display: none;
+      }
+    }
+    .item-filter-restart {
+      @include f-body-2();
+      color: $red;
+      cursor: pointer;
+      display: block;
+      margin: 0 0 1rem 0;
+      overflow: hidden;
+      text-align: center;
+      text-decoration: underline;
+      text-transform: uppercase;
+      width: 100%;
+    }
+    .item-filter-options {
+      width: 100%;
+
+      .item-filter-options-cta {
+        @include f-body-2();
+        display: block;
+        text-align: center;
+      }
+      .item-filter-options-menu {
+        margin: 1rem 0;
+        overflow: hidden;
+        width: 100%;
+
+        .item-filter-options-menu-item {
+          float: left;
+          width: 50%;
+
+          .button {
+            @include f-button();
+            color: $black;
+            padding: 0 0 0 0;
+            width: 100%;
+          }
+          &:first-child {
+            padding: 0 0.5rem 0 1rem;
+          }
+          &:last-child {
+            padding: 0 1rem 0 0.5rem;
+          }
+        }
+      }
+      .item-filter-part_number-form {
+        overflow: hidden;
+        padding: 0 1rem;
+        width: 100%;
+
+        .item-filter-part_number-field {
+          @include f-input();
+          float: left;
+          width: 66.66%;
+        }
+        .item-filter-part_number-submit {
+          float: left;
+          padding: 0 0 0 1rem;
+          width: 33.33%;
+
+          button {
+            @include f-button();
+            color: $black;
+            padding: 0 0 0 0;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+@mixin filter-cta() {
+  margin: 2rem 0 1rem 0;
+  padding: 0 1rem;
+  text-align: center;
+  width: 100%;
+
+  .title {
+    @include f-title();
+    text-transform: uppercase;
+    width: 100%;
+  }
+  .copy {
+    @include f-body-1();
+    color: $darkgrey;
+    margin: 0.5rem 0 0 0;
+    width: 100%;
+  }
+}
+@mixin grid() {
+  overflow: hidden;
+  width: 100%;
+
+  .grid-item {
+    display: block;
+    float: left;
+    margin: 0 0 1rem 0;
+    width: 50%;
+
+    .grid-item-link {
+      color: $red;
+      text-decoration: none;
+      width: 100%;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .thumbnail-container {
+      padding: 0 0 100% 0;
+      position: relative;
+      width: 100%;
+
+      .thumbnail {
+        max-height: 100%;
+        max-width: 100%;
+        position: absolute;
+        top: 50%; left: 50%;
+        @include transform( translate3d( -50%, -50%, 0 ) );
+      }
+    }
+    .copy {
+      @include f-caption();
+      display: block;
+      margin: 0.5rem 0 0 0;
+      height: 1.75rem;
+      text-align: center;
+      text-transform: uppercase;
+      width: 100%;
+    }
+    &:nth-child( 2n + 1 ) {
+      padding: 0 0.5rem 0 0;
+    }
+    &:nth-child( 2n ) {
+      padding: 0 0 0 0.5rem;
+    }
+    @media( min-width: $tablet ) {
+      width: 25%;
+
+      &:nth-child( 2n + 1 ) {
+        padding: 0 0 0 0;
+      }
+      &:nth-child( 2n ) {
+        padding: 0 0 0 0;
+      }
+      &:nth-child( 4n + 1 ) {
+        padding: 0 0.75rem 0 0;
+      }
+      &:nth-child( 4n + 2 ) {
+        padding: 0 0.5rem 0 0.25rem;
+      }
+      &:nth-child( 4n + 3 ) {
+        padding: 0 0.25rem 0 0.5rem;
+      }
+      &:nth-child( 4n + 4 ) {
+        padding: 0 0 0 0.75rem;
+      }
+    }
+    @media( min-width: $desktop ) {
+
+    }
+  }
+}
+@mixin hero() {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 14rem;
+  position: relative;
+  width: 100%;
+
+  .copy {
+    padding: 0 1rem;
+    position: absolute;
+    top: 50%; left: 0;
+    text-align: center;
+    @include transform( translate3d( 0, -50%, 0 ) );
+    width: 100%;
+
+    .headline {
+      @include f-headline();
+      color: $white;
+      margin: 0 0 0.5rem 0;
+      text-transform: uppercase;
+      width: 100%;
+    }
+    .subheading {
+      @include f-subheading();
+      color: $white;
+      margin: 0 auto;
+      max-width: 23.75rem;
+      width: 100%;
+    }
+  }
+}
+@mixin horizontal-scroll() {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 0 1rem 0;
+  white-space: nowrap;
+  width: 100%;
+
+  .horizontal-scroll-item {
+    display: inline-block;
+    margin: 0 0 0 1rem;
+    vertical-align: top;
+    white-space: normal;
+    width: 8rem;
+
+    .horizontal-scroll-item-link {
+      color: $red;
+      text-decoration: none;
+      width: 100%;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .thumbnail-container {
+      height: 8rem;
+      position: relative;
+      width: 100%;
+
+      .thumbnail {
+        display: block;
+        max-height: 100%;
+        max-width: 100%;
+        position: absolute;
+        top: 50%; left: 50%;
+        @include transform( translate3d( -50%, -50%, 0 ) );
+      } 
+    }
+    .copy {
+      @include f-caption();
+      display: block;
+      margin: 0.5rem 0 0 0;
+      text-align: center;
+      text-transform: uppercase;
+      width: 100%;
+    }
+    &:first-child {
+      margin: 0 0 0 0;
+    }
+  }
+  &::-webkit-scrollbar {
+    background: linear-gradient( to bottom,
+      transparent 0px,
+      transparent 0.5rem,
+      $darkgrey 0.5rem,
+      $darkgrey 0.5625rem,
+      transparent 0.5625rem
+    );
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $darkgrey;
+
+    &:hover {
+      background-color: $black;
+    }
+  }
+}
+@mixin radio() {
+
+  input {
+    display: none;
+  }
+  label {
+    @include f-caption();
+    display: block;
+    position: relative;
+    width: 100%;
+
+    &:before {
+      border: 2px solid $lightgrey;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0; left: 0;
+    }
+  }
+  input:checked + label {
+
+    // &:before {
+    //   border: 2px solid $red;
+    // }
+    &:after {
+      background-color: $red;
+      border-radius: 100%;
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0; left: 0;
+    }
+  }
+  &:first-child {
+    margin: 0 0 0 0;
+  }
+}
+@mixin table() {
+  position: relative;
+  width: 100%;
+
+  .content {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 0 1rem 0;
+    text-align: center;
+    white-space: nowrap;
+    width: 100%;
+
+    .rows {
+      display: inline-block;
+      text-align: left;
+
+      .row {
+        @include f-body-1();
+        background-color: $white;
+        color: $black;
+        cursor: pointer;
+        display: block;
+
+        .column {
+          display: inline-block;
+          padding: 1rem;
+          vertical-align: top;
+          white-space: normal;
+
+          &.small {
+            width: 6rem;
+          }
+          &.medium {
+            width: 9rem;
+          }
+          &.large {
+            width: 12rem;
+          }
+          &.part-number {
+            color: $red;
+            text-decoration: underline;
+          }
+        }
+        &.columns {
+          @include f-body-2();
+          cursor: default;
+
+          .column {
+            vertical-align: bottom;
+          }
+          .part-number {
+            color: $black;
+            text-decoration: none;
+          }
+        }
+        &:nth-child( 2n + 1 ) {
+          background-color: $lightgrey;
+        }
+      }
+    }
+    &::-webkit-scrollbar {
+      background: linear-gradient( to bottom,
+        transparent 0px,
+        transparent 0.5rem,
+        $darkgrey 0.5rem,
+        $darkgrey 0.5625rem,
+        transparent 0.5625rem
+      );
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $darkgrey;
+
+      &:hover {
+        background-color: $black;
+      }
+    }
+  }
+  .caption {
+    @include f-caption();
+    color: $grey;
+    margin: 0.75rem 0 0 0;
+    text-align: center;
+    width: 100%;
+
+    .mobile-only {
+
+      @media( min-width: $tablet ) {
+
+      }
+      @media( min-width: $desktop ) {
+        display: none;
+      }
+    }
+  }
+}
+@mixin transform( $properties ) {
+  -moz-transform:    $properties;
+  -ms-transform:     $properties;
+  -o-transform:      $properties;
+  -webkit-transform: $properties;
+  transform:         $properties;
+}
+@mixin transformTransition( $duration, $timing, $delay ) {
+  -moz-transition:    -moz-transform $duration $timing $delay;
+  -ms-transition:     -ms-transform $duration $timing $delay;
+  -o-transition:      -o-transform $duration $timing $delay;
+  -webkit-transition: -webkit-transform $duration $timing $delay;
+  transition:         transform $duration $timing $delay;
+}
+@mixin transition( $properties ) {
+  -moz-transition:    $properties;
+  -ms-transition:     $properties;
+  -o-transition:      $properties;
+  -webkit-transition: $properties;
+  transition:         $properties;
+}
+@mixin underline() {
+  background-color: $grey;
+  display: block;
+  height: 1px;
+  width: 100%;
+}

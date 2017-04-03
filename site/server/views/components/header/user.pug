@@ -1,0 +1,6 @@
+div.user-bar
+	div.user-menu
+		a.user-info(href='/account')
+			span.user-icon
+			span.username #{ user.first_name || "Username" }
+		a.logout(href="/logout") Logout
